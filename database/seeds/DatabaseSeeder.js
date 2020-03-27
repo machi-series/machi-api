@@ -424,12 +424,35 @@ class DatabaseSeeder {
       },
     ]
 
+    const users = [
+      {
+        role: 'admin',
+        username: 'admin',
+        password: 'admin',
+        email: 'admin@example.com',
+      },
+      {
+        role: 'manager',
+        username: 'manager',
+        password: 'manager',
+        email: 'manager@example.com',
+      },
+      {
+        role: 'publisher',
+        username: 'publisher',
+        password: 'publisher',
+        email: 'publisher@example.com',
+      },
+      {
+        role: 'user',
+        username: 'member',
+        password: 'member',
+        email: 'member@example.com',
+      },
+    ]
+
     await Tag.createMany(tags)
-    await User.create({
-      username: 'admin',
-      password: 'admin',
-      email: 'admin@example.com',
-    })
+    await User.createMany(users)
   }
 }
 

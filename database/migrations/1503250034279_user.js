@@ -9,6 +9,10 @@ class UserSchema extends Schema {
       table.increments()
       table.string('username', 80).notNullable().unique()
       table.string('email', 254).notNullable().unique()
+      table
+        .enum('role', ['user', 'publisher', 'manager', 'admin'])
+        .notNullable()
+        .defaultTo('member')
       table.string('password', 60).notNullable()
       table.timestamps()
     })

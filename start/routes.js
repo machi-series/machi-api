@@ -16,6 +16,23 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.resource('series', 'SeriesController').apiOnly()
-Route.resource('tags', 'TagController').apiOnly()
-Route.resource('episodes', 'EpisodeController').apiOnly()
+const defaultCrudMiddlewares = new Map([
+  [
+    ['store', 'update'],
+    ['auth', 'staff'],
+  ],
+  [['destroy'], ['auth', 'manager']],
+])
+
+Route.resource('series', 'SeriesController')
+  .apiOnly()
+  .middleware(defaultCrudMiddlewares)
+Route.resource('tags', 'TagController')
+  .apiOnly()
+  .middleware(defaultCrudMiddlewares)
+Route.resource('episodes', 'EpisodeController')
+  .apiOnly()
+  .middleware(defaultCrudMiddlewares)
+
+Route.get('me', 'UserController.me').middleware('auth')
+Route.post('login', 'UserController.login').middleware('guest')
