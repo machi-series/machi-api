@@ -33,6 +33,17 @@ Route.resource('tags', 'TagController')
 Route.resource('episodes', 'EpisodeController')
   .apiOnly()
   .middleware(defaultCrudMiddlewares)
+Route.resource('users', 'UserController')
+  .apiOnly()
+  .middleware(
+    new Map([
+      [
+        ['index', 'show', 'store', , 'delete'],
+        ['auth', 'admin'],
+      ],
+      [['update'], ['auth', 'staff']],
+    ])
+  )
 
 Route.get('me', 'UserController.me').middleware('auth')
 Route.post('login', 'UserController.login').middleware('guest')
