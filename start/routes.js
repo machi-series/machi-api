@@ -38,7 +38,7 @@ Route.resource('users', 'UserController')
   .middleware(
     new Map([
       [
-        ['index', 'show', 'store', , 'delete'],
+        ['show', 'store', 'delete'],
         ['auth', 'admin'],
       ],
       [['update'], ['auth', 'staff']],
@@ -49,3 +49,5 @@ Route.post('/upload', 'ImageController.upload')
 
 Route.get('me', 'UserController.me').middleware('auth')
 Route.post('login', 'UserController.login').middleware('guest')
+Route.post('forgot', 'UserController.forgot')
+Route.get('recover', 'UserController.recover').middleware('auth')

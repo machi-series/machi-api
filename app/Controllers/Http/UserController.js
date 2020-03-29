@@ -2,6 +2,8 @@
 
 const ValidationFormatter = use('ValidationFormatter')
 const { validateAll, sanitize, sanitizor } = use('Validator')
+const Mail = use('Mail')
+const Env = use('Env')
 const User = use('App/Models/User')
 const roles = ['user', 'publisher', 'manager', 'admin']
 
@@ -13,6 +15,37 @@ class UserController {
 
   me({ auth, params }) {
     return getById(auth.user.id)
+  }
+
+  async forgot({ request, auth }) {
+    const { email } = request.all()
+    const user = await User.findByOrFail('email', email)
+    const { token } = await auth.generate(
+      user,
+      {},
+      {
+        expiresIn: 60 * 60, // hour
+      }
+    )
+
+    await Mail.send(
+      'emails.forgot',
+      { user: user.toJSON(), token, APP_URL: Env.get('APP_URL') },
+      (message) => {
+        message
+          .to(user.email)
+          .from('naoresponda@animestc.com')
+          .subject('Recuperação de senha')
+      }
+    )
+  }
+
+  async recover({ auth, view }) {
+    const randomPassword = Math.random().toString(16).slice(7)
+    const user = await User.findOrFail(auth.user.id)
+    user.password = randomPassword
+    await user.save()
+    return view.render('recover', { randomPassword })
   }
 
   index({ request }) {

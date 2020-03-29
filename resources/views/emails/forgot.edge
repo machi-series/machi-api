@@ -1,0 +1,11 @@
+<h2> Recuperação de senha para o usuário {{ user.username }} </h2>
+
+<p>
+  Entre em <a href="{{APP_URL}}/recover?token={{token}}" target="_blank">neste link</a> para gerar uma senha temporária.
+</p>
+
+<p>
+  Este link expira em 1 hora.
+</p>
+
+<p>Caso o link não apareça, copie e cole este URL no navegador: {{APP_URL}}/recover?token={{token}}</p>
