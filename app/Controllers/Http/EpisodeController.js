@@ -14,6 +14,7 @@ class EpisodeController {
       order = 'id',
       direction = 'asc',
       seriesId,
+      search,
     } = request.get()
     const query = Episode.query()
       .with('author')
@@ -23,6 +24,10 @@ class EpisodeController {
 
     if (seriesId) {
       query.where('seriesId', Number(seriesId))
+    }
+
+    if (search) {
+      query.where('title', 'ilike', `%${search}%`)
     }
 
     return query.orderBy(order, direction).paginate(Number(page))

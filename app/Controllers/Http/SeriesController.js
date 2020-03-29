@@ -10,14 +10,18 @@ const types = ['series', 'ova', 'movie', 'special']
 
 class SeriesController {
   index({ request }) {
-    const { page = 1, order = 'id', direction = 'asc' } = request.get()
-    return Series.query()
+    const { page = 1, order = 'id', direction = 'asc', search } = request.get()
+    const query = Series.query()
       .with('author')
       .with('editedBy')
       .with('tags')
       .with('cover')
-      .orderBy(order, direction)
-      .paginate(Number(page))
+
+    if (search) {
+      query.where('title', 'ilike', `%${search}%`)
+    }
+
+    return query.orderBy(order, direction).paginate(Number(page))
   }
 
   async show({ params }) {

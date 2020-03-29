@@ -16,11 +16,15 @@ class UserController {
   }
 
   index({ request }) {
-    const { page = 1, order = 'id', direction = 'asc' } = request.get()
-    return User.query()
-      .with('avatar')
-      .orderBy(order, direction)
-      .paginate(Number(page))
+    const { page = 1, order = 'id', direction = 'asc', search } = request.get()
+    const query = User.query().with('avatar')
+
+    if (search) {
+      query.orWhere('username', 'ilike', `%${search}%`)
+      query.orWhere('email', 'ilike', `%${search}%`)
+    }
+
+    return query.orderBy(order, direction).paginate(Number(page))
   }
 
   async show({ params }) {
