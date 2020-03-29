@@ -45,6 +45,8 @@ class EpisodesSchema extends Schema {
       table.string('title').notNullable()
       table.string('slug').notNullable().unique()
       table.string('number').notNullable()
+      table.string('source').nullable()
+      table.integer('priority').notNullable().defaultTo(0)
       table
         .jsonb('links')
         .notNullable()
@@ -53,6 +55,7 @@ class EpisodesSchema extends Schema {
             low: [],
             medium: [],
             high: [],
+            online: [],
           })
         )
       table.enum('type', ['episode', 'ova', 'movie', 'special']).notNullable()

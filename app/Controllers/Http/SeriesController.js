@@ -4,6 +4,9 @@ const ValidationFormatter = use('ValidationFormatter')
 const Series = use('App/Models/Series')
 const { validateAll, sanitize, sanitizor } = use('Validator')
 const statuses = ['draft', 'published', 'deleted', 'revision']
+const classification = ['open', '10', '12', '14', '16', '18']
+const releaseStatus = ['tba', 'airing', 'complete', 'onhold', 'canceled']
+const types = ['series', 'ova', 'movie', 'special']
 
 class SeriesController {
   index({ request }) {
@@ -29,6 +32,16 @@ class SeriesController {
       'synopsis',
       'status',
       'coverId',
+      'episodeCount',
+      'year',
+      'releaseDate',
+      'releaseTime',
+      'episodeDuration',
+      'trailer',
+      'producer',
+      'classification',
+      'releaseStatus',
+      'type',
     ])
     const { tags = [] } = request.only(['tags'])
 
@@ -40,6 +53,16 @@ class SeriesController {
       synopsis: 'required|string',
       status: `string|in:${statuses.join(',')}`,
       tags: 'array|existsAll:tags,id',
+      episodeCount: 'number|above:0',
+      year: 'number|above:1900',
+      releaseDate: 'string|brazilianDate',
+      releaseTime: 'string|brazilianTime',
+      episodeDuration: 'number|above:0',
+      trailer: 'url',
+      producer: 'string',
+      classification: `string|in:${classification.join(',')}`,
+      releaseStatus: `string|in:${releaseStatus.join(',')}`,
+      type: `required|string|in:${types.join(',')}`,
     }
     const satinization = {
       slug: 'slug',
@@ -80,6 +103,16 @@ class SeriesController {
       'synopsis',
       'status',
       'coverId',
+      'episodeCount',
+      'year',
+      'releaseDate',
+      'releaseTime',
+      'episodeDuration',
+      'trailer',
+      'producer',
+      'classification',
+      'releaseStatus',
+      'type',
     ])
     const { tags = [] } = request.only(['tags'])
 
@@ -93,6 +126,16 @@ class SeriesController {
       synopsis: 'string',
       status: `string|in:${statuses.join(',')}`,
       tags: 'array|existsAll:tags,id',
+      episodeCount: 'number|above:0',
+      year: 'number|above:1900',
+      releaseDate: 'string|brazilianDate',
+      releaseTime: 'string|brazilianTime',
+      episodeDuration: 'number|above:0',
+      trailer: 'url',
+      producer: 'string',
+      classification: `string|in:${classification.join(',')}`,
+      releaseStatus: `string|in:${releaseStatus.join(',')}`,
+      type: `string|in:${types.join(',')}`,
     }
     const satinization = {
       slug: 'slug',

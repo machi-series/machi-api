@@ -35,9 +35,31 @@ class SeriesSchema extends Schema {
         .references('images.id')
         .onUpdate('SET NULL')
         .onDelete('SET NULL')
-      table.string('title').notNullable()
+      table.text('title').notNullable()
       table.string('slug').notNullable().unique()
-      table.string('synopsis').notNullable().defaultTo('')
+      table.text('synopsis').notNullable().defaultTo('')
+      table.integer('episodeCount').nullable()
+      table.integer('year').nullable()
+      table.string('releaseDate').nullable()
+      table.string('releaseTime').nullable()
+      table.integer('episodeDuration').nullable()
+      table.string('trailer').nullable()
+      table.string('producer').nullable()
+      table.enum('type', ['series', 'ova', 'movie', 'special']).notNullable()
+      table
+        .enum('classification', ['open', '10', '12', '14', '16', '18'])
+        .notNullable()
+        .defaultTo('open')
+      table
+        .enum('releaseStatus', [
+          'tba',
+          'airing',
+          'complete',
+          'onhold',
+          'canceled',
+        ])
+        .notNullable()
+        .defaultTo('tba')
       table
         .enum('status', ['draft', 'published', 'deleted', 'revision'])
         .notNullable()

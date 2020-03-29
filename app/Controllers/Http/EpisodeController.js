@@ -44,6 +44,7 @@ class EpisodeController {
       'type',
       'quality',
       'coverId',
+      'source',
     ])
 
     const validation = {
@@ -57,6 +58,7 @@ class EpisodeController {
       links: 'required|object|links',
       type: `required|string|in:${episodeTypes.join(',')}`,
       quality: `required|string|in:${episodeQualities.join(',')}`,
+      source: 'string',
     }
     const satinization = {
       slug: 'slug',
@@ -98,6 +100,7 @@ class EpisodeController {
       'type',
       'quality',
       'coverId',
+      'source',
     ])
 
     const validation = {
@@ -112,6 +115,7 @@ class EpisodeController {
       links: 'object|links',
       type: `string|in:${episodeTypes.join(',')}`,
       quality: `string|in:${episodeQualities.join(',')}`,
+      source: 'string',
     }
     const satinization = {
       slug: 'slug',
