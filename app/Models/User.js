@@ -39,12 +39,16 @@ class User extends Model {
     return this.hasMany('App/Models/Token')
   }
 
+  avatar() {
+    return this.hasOne('App/Models/Image', 'avatarId', 'id')
+  }
+
   authoredSeries() {
     return this.hasMany('App/Models/Series', 'id', 'authorId')
   }
 
   editingSeries() {
-    return this.hasMany('App/Models/Series', 'id', 'editingById')
+    return this.hasMany('App/Models/Series', 'id', 'editedById')
   }
 
   authoredEpisodes() {
@@ -52,7 +56,7 @@ class User extends Model {
   }
 
   editingEpisodes() {
-    return this.hasMany('App/Models/Episode', 'id', 'editingById')
+    return this.hasMany('App/Models/Episode', 'id', 'editedById')
   }
 }
 

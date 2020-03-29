@@ -1,12 +1,13 @@
 'use strict'
 
+const ValidationFormatter = use('ValidationFormatter')
 const Tag = use('App/Models/Tag')
 const { validateAll, sanitize, sanitizor } = use('Validator')
 
 class TagController {
   index({ request }) {
-    const page = Number(request.get().page) || 1
-    return Tag.query().paginate(page)
+    const { page = 1, order = 'id', direction = 'asc' } = request.get()
+    return Tag.query().orderBy(order, direction).paginate(Number(page))
   }
 
   async show({ params }) {
@@ -30,7 +31,12 @@ class TagController {
       data.slug = sanitizor.slug(data.name)
     }
 
-    const validated = await validateAll(data, validation)
+    const validated = await validateAll(
+      data,
+      validation,
+      {},
+      ValidationFormatter.formatter
+    )
     if (validated.fails()) {
       return response.badRequest(validated.messages())
     }
@@ -51,7 +57,12 @@ class TagController {
     }
     const data = sanitize(rawData, satinization)
 
-    const validated = await validateAll(data, validation)
+    const validated = await validateAll(
+      data,
+      validation,
+      {},
+      ValidationFormatter.formatter
+    )
     if (validated.fails()) {
       return response.badRequest(validated.messages())
     }

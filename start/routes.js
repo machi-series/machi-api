@@ -44,6 +44,8 @@ Route.resource('users', 'UserController')
       [['update'], ['auth', 'staff']],
     ])
   )
+Route.get('/images/:name', 'ImageController.show')
+Route.post('/upload', 'ImageController.upload')
 
 Route.get('me', 'UserController.me').middleware('auth')
 Route.post('login', 'UserController.login').middleware('guest')

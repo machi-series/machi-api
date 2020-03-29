@@ -1,7 +1,8 @@
 'use strict'
 
+const ValidationFormatter = use('ValidationFormatter')
 const { validateAll, sanitize, sanitizor } = use('Validator')
-const User = use('App/Model/User')
+const User = use('App/Models/User')
 const roles = ['user', 'publisher', 'manager', 'admin']
 
 class UserController {
@@ -11,37 +12,52 @@ class UserController {
   }
 
   me({ auth, params }) {
-    return auth.user
+    return getById(auth.user.id)
   }
 
   index({ request }) {
-    const page = Number(request.get('page')) || 1
-    return User.query().paginate(page)
+    const { page = 1, order = 'id', direction = 'asc' } = request.get()
+    return User.query()
+      .with('avatar')
+      .orderBy(order, direction)
+      .paginate(Number(page))
   }
 
   async show({ params }) {
-    const user = await User.findOrFail(params.id)
-    return user
+    return getById(params.id)
   }
 
   async store({ request, response }) {
-    const rawData = request.only(['email', 'username', 'role', 'password'])
+    const rawData = request.only([
+      'email',
+      'username',
+      'role',
+      'password',
+      'avatarId',
+    ])
 
     const validation = {
       email: 'required|email|max:254|unique:users,email',
       username: 'required|string|max:80|unique:users,username',
       role: `required|string|in:${roles.join(',')}`,
       password: 'required|string|max:60',
+      avatarId: 'exists:images,id',
     }
     const satinization = {}
     const data = sanitize(rawData, satinization)
 
-    const validated = await validateAll(data, validation)
+    const validated = await validateAll(
+      data,
+      validation,
+      {},
+      ValidationFormatter.formatter
+    )
     if (validated.fails()) {
       return response.badRequest(validated.messages())
     }
 
-    return await User.create(data)
+    const user = await User.create(data)
+    return getById(user.id)
   }
 
   async update({ params, request, response, auth }) {
@@ -52,7 +68,7 @@ class UserController {
       return response.unauthorized()
     }
 
-    const fields = ['email', 'username', 'password']
+    const fields = ['email', 'username', 'password', 'avatarId']
     if (isAdmin) {
       fields.push('role')
     }
@@ -63,18 +79,24 @@ class UserController {
       username: 'string|max:80|unique:users,username,id,' + user.id,
       role: `string|in:${roles.join(',')}`,
       password: 'string|max:60',
+      avatarId: 'exists:images,id',
     }
     const satinization = {}
     const data = sanitize(rawData, satinization)
 
-    const validated = await validateAll(rawData, validation)
+    const validated = await validateAll(
+      rawData,
+      validation,
+      {},
+      ValidationFormatter.formatter
+    )
     if (validated.fails()) {
       return response.badRequest(validated.messages())
     }
 
     user.merge(data)
     await user.save()
-    return user
+    return getById(user.id)
   }
 
   async destroy({ params, response }) {
@@ -85,3 +107,7 @@ class UserController {
 }
 
 module.exports = UserController
+
+function getById(id) {
+  return User.query().with('avatar').where('id', id).firstOrFail()
+}

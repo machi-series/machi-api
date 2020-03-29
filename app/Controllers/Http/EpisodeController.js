@@ -1,43 +1,60 @@
 'use strict'
 
+const ValidationFormatter = use('ValidationFormatter')
 const Episode = use('App/Models/Episode')
 const { validateAll, sanitize, sanitizor } = use('Validator')
 const statuses = ['draft', 'published', 'deleted', 'revision']
 const episodeTypes = ['episode', 'ova', 'movie', 'special']
-const episodeQualities = ['bluray', 'hdtv']
+const episodeQualities = ['bluray', 'hdtv', 'dvd']
 
 class EpisodeController {
   index({ request }) {
-    const page = Number(request.get('page')) || 1
-    return Episode.query().paginate(page)
+    const {
+      page = 1,
+      order = 'id',
+      direction = 'asc',
+      seriesId,
+    } = request.get()
+    const query = Episode.query()
+      .with('author')
+      .with('editedBy')
+      .with('series')
+      .with('cover')
+
+    if (seriesId) {
+      query.where('seriesId', Number(seriesId))
+    }
+
+    return query.orderBy(order, direction).paginate(Number(page))
   }
 
   async show({ params }) {
-    const episode = await Episode.findOrFail(params.id)
-    return episode
+    return getById(params.id)
   }
 
   async store({ request, response }) {
     const rawData = request.only([
+      'seriesId',
       'authorId',
       'title',
       'slug',
-      'synopsis',
       'status',
       'number',
       'links',
       'type',
       'quality',
+      'coverId',
     ])
 
     const validation = {
       title: 'required|string',
       slug: 'required|string|unique:episodes',
+      seriesId: 'required|exists:series,id',
       authorId: 'required|exists:users,id',
-      synopsis: 'required|string',
+      coverId: 'required|exists:images,id',
       status: `string|in:${statuses.join(',')}`,
       number: 'required|string',
-      links: 'required|links',
+      links: 'required|object|links',
       type: `required|string|in:${episodeTypes.join(',')}`,
       quality: `required|string|in:${episodeQualities.join(',')}`,
     }
@@ -53,12 +70,18 @@ class EpisodeController {
       data.status = 'draft'
     }
 
-    const validated = await validateAll(data, validation)
+    const validated = await validateAll(
+      data,
+      validation,
+      {},
+      ValidationFormatter.formatter
+    )
     if (validated.fails()) {
       return response.badRequest(validated.messages())
     }
 
-    return Episode.create(data)
+    const episode = await Episode.create(data)
+    return getById(episode.id)
   }
 
   async update({ params, request, response }) {
@@ -66,15 +89,15 @@ class EpisodeController {
     const rawData = request.only([
       'revisionOfId',
       'authorId',
-      'editingById',
+      'editedById',
       'title',
       'slug',
-      'synopsis',
       'status',
       'number',
       'links',
       'type',
       'quality',
+      'coverId',
     ])
 
     const validation = {
@@ -82,27 +105,32 @@ class EpisodeController {
       slug: 'string|unique:episodes,id,' + episode.id,
       revisionOfId: 'exists:episodes,id',
       authorId: 'exists:users,id',
-      editingById: 'exists:users,id',
-      synopsis: 'string',
+      coverId: 'exists:images,id',
+      editedById: 'exists:users,id',
       status: `string|in:${statuses.join(',')}`,
       number: 'string',
-      links: 'links',
+      links: 'object|links',
       type: `string|in:${episodeTypes.join(',')}`,
       quality: `string|in:${episodeQualities.join(',')}`,
     }
     const satinization = {
       slug: 'slug',
     }
-    const data = sanitize({ rawData }, satinization)
+    const data = sanitize(rawData, satinization)
 
-    const validated = await validateAll(data, validation)
+    const validated = await validateAll(
+      data,
+      validation,
+      {},
+      ValidationFormatter.formatter
+    )
     if (validated.fails()) {
       return response.badRequest(validated.messages())
     }
 
     episode.merge(data)
     await episode.save()
-    return episode
+    return getById(episode.id)
   }
 
   async destroy({ params, response }) {
@@ -113,3 +141,13 @@ class EpisodeController {
 }
 
 module.exports = EpisodeController
+
+function getById(id) {
+  return Episode.query()
+    .with('author')
+    .with('editedBy')
+    .with('series')
+    .with('cover')
+    .where('id', id)
+    .firstOrFail()
+}

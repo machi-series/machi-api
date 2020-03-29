@@ -12,7 +12,15 @@ class SerieTagsSchema extends Schema {
         .unsigned()
         .notNullable()
         .references('series.id')
-      table.integer('tag_id').unsigned().notNullable().references('tags.id')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE')
+      table
+        .integer('tag_id')
+        .unsigned()
+        .notNullable()
+        .references('tags.id')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE')
       table.timestamps()
     })
   }

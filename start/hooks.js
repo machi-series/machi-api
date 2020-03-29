@@ -44,4 +44,25 @@ hooks.after.providersRegistered(() => {
       throw message
     }
   })
+
+  Validator.extend('links', async function linksValidator(
+    data,
+    field,
+    message,
+    args,
+    get
+  ) {
+    const value = get(data, field)
+    if (value === null || typeof value !== 'object') {
+      return
+    }
+
+    const valid = ['mp4', 'hd', 'fullHd'].every((key) =>
+      Array.isArray(value[key])
+    )
+
+    if (!valid) {
+      throw message
+    }
+  })
 })

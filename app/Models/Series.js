@@ -5,15 +5,19 @@ const Model = use('Model')
 
 class Series extends Model {
   author() {
-    return this.hasOne('App/Models/User', 'userId')
+    return this.hasOne('App/Models/User', 'authorId', 'id')
   }
 
-  editingBy() {
-    return this.hasOne('App/Models/User', 'editingById')
+  editedBy() {
+    return this.hasOne('App/Models/User', 'editedById', 'id')
+  }
+
+  cover() {
+    return this.hasOne('App/Models/Image', 'coverId', 'id')
   }
 
   revisionOf() {
-    return this.hasOne('App/Models/Series', 'revisionOfId')
+    return this.hasOne('App/Models/Series', 'revisionOfId', 'id')
   }
 
   revisions() {

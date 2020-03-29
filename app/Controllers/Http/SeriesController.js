@@ -1,18 +1,24 @@
 'use strict'
 
+const ValidationFormatter = use('ValidationFormatter')
 const Series = use('App/Models/Series')
 const { validateAll, sanitize, sanitizor } = use('Validator')
 const statuses = ['draft', 'published', 'deleted', 'revision']
 
 class SeriesController {
   index({ request }) {
-    const page = Number(request.get('page')) || 1
-    return Series.query().paginate(page)
+    const { page = 1, order = 'id', direction = 'asc' } = request.get()
+    return Series.query()
+      .with('author')
+      .with('editedBy')
+      .with('tags')
+      .with('cover')
+      .orderBy(order, direction)
+      .paginate(Number(page))
   }
 
   async show({ params }) {
-    const series = await Series.findOrFail(params.id)
-    return series
+    return getById(params.id)
   }
 
   async store({ request, response }) {
@@ -22,6 +28,7 @@ class SeriesController {
       'slug',
       'synopsis',
       'status',
+      'coverId',
     ])
     const { tags = [] } = request.only(['tags'])
 
@@ -29,6 +36,7 @@ class SeriesController {
       title: 'required|string',
       slug: 'required|string|unique:series',
       authorId: 'required|exists:users,id',
+      coverId: 'required|exists:images,id',
       synopsis: 'required|string',
       status: `string|in:${statuses.join(',')}`,
       tags: 'array|existsAll:tags,id',
@@ -45,7 +53,12 @@ class SeriesController {
       data.status = 'draft'
     }
 
-    const validated = await validateAll({ ...data, tags }, validation)
+    const validated = await validateAll(
+      { ...data, tags },
+      validation,
+      {},
+      ValidationFormatter.formatter
+    )
     if (validated.fails()) {
       return response.badRequest(validated.messages())
     }
@@ -53,7 +66,7 @@ class SeriesController {
     const series = await Series.create(data)
     await series.tags().sync(tags.map((t) => +t))
 
-    return Series.query().where('id', series.id).with('tags').first()
+    return getById(series.id)
   }
 
   async update({ params, request, response }) {
@@ -61,20 +74,22 @@ class SeriesController {
     const rawData = request.only([
       'revisionOfId',
       'authorId',
-      'editingById',
+      'editedById',
       'title',
       'slug',
       'synopsis',
       'status',
+      'coverId',
     ])
     const { tags = [] } = request.only(['tags'])
 
     const validation = {
       title: 'string',
-      slug: 'string|unique:series,id,' + series.id,
+      slug: 'string|unique:series,slug,id,' + series.id,
       revisionOfId: 'exists:series,id',
       authorId: 'exists:users,id',
-      editingById: 'exists:users,id',
+      coverId: 'exists:images,id',
+      editedById: 'exists:users,id',
       synopsis: 'string',
       status: `string|in:${statuses.join(',')}`,
       tags: 'array|existsAll:tags,id',
@@ -84,7 +99,12 @@ class SeriesController {
     }
     const data = sanitize(rawData, satinization)
 
-    const validated = await validateAll({ ...rawData, tags }, validation)
+    const validated = await validateAll(
+      { ...rawData, tags },
+      validation,
+      {},
+      ValidationFormatter.formatter
+    )
     if (validated.fails()) {
       return response.badRequest(validated.messages())
     }
@@ -93,7 +113,7 @@ class SeriesController {
     await series.save()
     await series.tags().sync(tags.map((t) => +t))
 
-    return Series.query().where('id', series.id).with('tags').first()
+    return getById(series.id)
   }
 
   async destroy({ params, response }) {
@@ -104,3 +124,13 @@ class SeriesController {
 }
 
 module.exports = SeriesController
+
+function getById(id) {
+  return Series.query()
+    .with('author')
+    .with('editedBy')
+    .with('tags')
+    .with('cover')
+    .where('id', id)
+    .firstOrFail()
+}
