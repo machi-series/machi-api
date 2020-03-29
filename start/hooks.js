@@ -57,9 +57,47 @@ hooks.after.providersRegistered(() => {
       return
     }
 
-    const valid = ['low', 'medium', 'high'].every((key) =>
+    const valid = ['low', 'medium', 'high', 'online'].every((key) =>
       Array.isArray(value[key])
     )
+
+    if (!valid) {
+      throw message
+    }
+  })
+
+  Validator.extend('brazilianDate', function dateValidator(
+    data,
+    field,
+    message,
+    args,
+    get
+  ) {
+    const value = get(data, field)
+    if (value === null || typeof value !== 'string') {
+      return
+    }
+
+    const valid = /^\d{2}\/\d{2}\/\d{4}$/.test(value)
+
+    if (!valid) {
+      throw message
+    }
+  })
+
+  Validator.extend('brazilianTime', function timeValidator(
+    data,
+    field,
+    message,
+    args,
+    get
+  ) {
+    const value = get(data, field)
+    if (value === null || typeof value !== 'string') {
+      return
+    }
+
+    const valid = /^\d{2}:\d{2}$/.test(value)
 
     if (!valid) {
       throw message
