@@ -6,8 +6,14 @@ const { validateAll, sanitize, sanitizor } = use('Validator')
 
 class TagController {
   index({ request }) {
-    const { page = 1, order = 'id', direction = 'asc' } = request.get()
-    return Tag.query().orderBy(order, direction).paginate(Number(page))
+    const { page = 1, order = 'id', direction = 'asc', search } = request.get()
+    const query = Tag.query()
+
+    if (search) {
+      query.where('name', 'ilike', `%${search}%`)
+    }
+
+    return query.orderBy(order, direction).paginate(Number(page))
   }
 
   async show({ params }) {
