@@ -31,6 +31,10 @@ class Formatter {
         : Antl.formatMessage('validation.' + validation, {
             field,
             argument: args,
+            ...args.reduce((acc, value, i) => {
+              acc[`argument${i}`] = value
+              return acc
+            }, {}),
           }),
     })
   }
