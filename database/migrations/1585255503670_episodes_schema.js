@@ -50,9 +50,9 @@ class EpisodesSchema extends Schema {
         .notNullable()
         .defaultTo(
           JSON.stringify({
-            mp4: [],
-            hd: [],
-            fullHd: [],
+            low: [],
+            medium: [],
+            high: [],
           })
         )
       table.enum('type', ['episode', 'ova', 'movie', 'special']).notNullable()

@@ -57,7 +57,7 @@ hooks.after.providersRegistered(() => {
       return
     }
 
-    const valid = ['mp4', 'hd', 'fullHd'].every((key) =>
+    const valid = ['low', 'medium', 'high'].every((key) =>
       Array.isArray(value[key])
     )
 
