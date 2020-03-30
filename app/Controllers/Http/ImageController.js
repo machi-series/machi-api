@@ -2,7 +2,6 @@
 
 const Image = use('App/Models/Image')
 const Drive = use('Drive')
-const sharp = require('sharp')
 const path = require('path')
 const jimp = require('jimp')
 
@@ -40,7 +39,7 @@ class ImageController {
       if (needsThumbnail) {
         tasks.push(
           thumbnail
-            .resize(width, height)
+            .resize(thumnailDimensions.width, thumnailDimensions.height)
             .getBufferAsync(jimp.MIME_JPEG)
             .then((data) => Drive.put(thumbnailName, data))
         )
