@@ -10,18 +10,38 @@ const types = ['series', 'ova', 'movie', 'special']
 
 class SeriesController {
   index({ request }) {
-    const { page = 1, order = 'id', direction = 'asc', search } = request.get()
+    const {
+      page = 1,
+      order = 'id',
+      direction = 'asc',
+      search,
+      transmissions = false,
+      limit = 20,
+    } = request.get()
     const query = Series.query()
       .with('author')
       .with('editedBy')
       .with('tags')
       .with('cover')
 
+    if (Boolean(transmissions)) {
+      return query
+        .where('releaseStatus', 'airing')
+        .whereNotNull('weekDay')
+        .whereNotNull('releaseTime')
+        .whereNotNull('episodeDuration')
+        .orderBy('weekDay', 'asc')
+        .orderBy('releaseTime', 'asc')
+        .paginate(1, 500)
+    }
+
     if (search) {
       query.where('title', 'ilike', `%${search}%`)
     }
 
-    return query.orderBy(order, direction).paginate(Number(page))
+    return query
+      .orderBy(order, direction)
+      .paginate(Number(page), Math.min(Number(limit), 20))
   }
 
   async show({ params }) {
