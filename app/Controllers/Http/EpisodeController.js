@@ -1,6 +1,7 @@
 'use strict'
 
 const ValidationFormatter = use('ValidationFormatter')
+const Database = use('Database')
 const Episode = use('App/Models/Episode')
 const { validateAll, sanitize, sanitizor } = use('Validator')
 const statuses = ['draft', 'published', 'deleted', 'revision']
@@ -8,13 +9,19 @@ const episodeTypes = ['episode', 'ova', 'movie', 'special']
 const episodeQualities = ['bluray', 'hdtv', 'dvd']
 
 class EpisodeController {
-  index({ request }) {
+  async index({ request, auth }) {
     const {
       page = 1,
       order = 'id',
       direction = 'asc',
+      forceAsc = false,
       seriesId,
       search,
+      specialOrder,
+      type,
+      limit = 20,
+      around = false,
+      slug,
     } = request.get()
     const query = Episode.query()
       .with('author')
@@ -22,15 +29,82 @@ class EpisodeController {
       .with('series')
       .with('cover')
 
+    const isCommonUser = !auth.user || auth.user.role === 'user'
+    if (isCommonUser) {
+      query.where('status', 'published')
+    }
+
+    if (slug) {
+      query.where('slug', slug)
+    }
+
     if (seriesId) {
       query.where('seriesId', Number(seriesId))
+    }
+
+    if (type) {
+      query.where('type', type)
     }
 
     if (search) {
       query.where('title', 'ilike', `%${search}%`)
     }
 
-    return query.orderBy(order, direction).paginate(Number(page))
+    const specialDirection = forceAsc ? 'ASC' : 'DESC'
+    if (specialOrder) {
+      const specialOrderby = `\
+priority ${specialDirection},
+(CASE
+  WHEN type = 'episode' THEN 1
+  WHEN type = 'ova' THEN 2
+  WHEN type = 'movie' THEN 3
+  ELSE 4
+  END) ${specialDirection},
+  number::INTEGER ${specialDirection}
+`
+      query.orderByRaw(specialOrderby)
+
+      if (/\d+/.test(around)) {
+        const rawAroundIds = await Database.raw(
+          `\
+WITH cte AS (
+  SELECT
+    s1.id, row_number() OVER (ORDER BY ${specialOrderby})
+  FROM
+    (${query.clone().toString()}) as s1
+), current AS (
+  SELECT
+    row_number
+  FROM
+    cte
+  WHERE
+    id = ?
+)
+
+SELECT
+  cte.id
+FROM
+  cte, current
+WHERE
+  ABS(cte.row_number - current.row_number) <= 4
+ORDER BY
+  cte.row_number;
+`,
+          around
+        )
+
+        const allIds = rawAroundIds.rows.map((r) => r.id)
+        const centerIndex = allIds.indexOf(+around)
+        const startSlicing = Math.max(0, centerIndex - 2)
+        const endSlicing = startSlicing + 5
+        const ids = allIds.slice(startSlicing, endSlicing)
+        return query.clone().whereIn('id', ids).fetch()
+      }
+    } else {
+      query.orderBy(order, direction)
+    }
+
+    return query.paginate(Number(page), Math.min(Number(limit), 20))
   }
 
   async show({ params }) {

@@ -9,14 +9,17 @@ const releaseStatus = ['tba', 'airing', 'complete', 'onhold', 'canceled']
 const types = ['series', 'ova', 'movie', 'special']
 
 class SeriesController {
-  index({ request }) {
+  index({ request, auth }) {
     const {
       page = 1,
       order = 'id',
       direction = 'asc',
       search,
+      slug,
       transmissions = false,
       limit = 20,
+      type,
+      full = false,
     } = request.get()
     const query = Series.query()
       .with('author')
@@ -35,13 +38,28 @@ class SeriesController {
         .paginate(1, 500)
     }
 
+    if (slug) {
+      query.where('slug', slug)
+    }
+
+    if (type) {
+      query.where('type', type)
+    }
+
+    const isCommonUser = !auth.user || auth.user.role === 'user'
+    if (isCommonUser) {
+      query.where('status', 'published')
+    }
+
     if (search) {
       query.where('title', 'ilike', `%${search}%`)
     }
 
-    return query
-      .orderBy(order, direction)
-      .paginate(Number(page), Math.min(Number(limit), 20))
+    const realLimit = full
+      ? Number.MAX_SAFE_INTEGER
+      : Math.min(Number(limit), 20)
+
+    return query.orderBy(order, direction).paginate(Number(page), realLimit)
   }
 
   async show({ params }) {
