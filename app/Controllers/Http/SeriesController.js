@@ -23,7 +23,9 @@ class SeriesController {
     } = request.get()
     const query = Series.query()
       .with('author')
+      .with('author.avatar')
       .with('editedBy')
+      .with('editedBy.avatar')
       .with('tags')
       .with('cover')
 

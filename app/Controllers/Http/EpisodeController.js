@@ -24,8 +24,9 @@ class EpisodeController {
       slug,
     } = request.get()
     const query = Episode.query()
-      .with('author')
+      .with('author.avatar')
       .with('editedBy')
+      .with('editedBy.avatar')
       .with('series')
       .with('cover')
 
@@ -184,7 +185,7 @@ ORDER BY
 
     const validation = {
       title: 'string',
-      slug: 'string|unique:episodes,id,' + episode.id,
+      slug: 'string|unique:episodes,slug,id,' + episode.id,
       revisionOfId: 'exists:episodes,id',
       authorId: 'exists:users,id',
       coverId: 'exists:images,id',
