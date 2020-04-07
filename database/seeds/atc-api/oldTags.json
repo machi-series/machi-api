@@ -1,0 +1,590 @@
+[
+  {
+    "term_id": 3,
+    "name": "Ação",
+    "slug": "acao",
+    "term_group": 0
+  },
+  {
+    "term_id": 4,
+    "name": "Aventura",
+    "slug": "aventura",
+    "term_group": 0
+  },
+  {
+    "term_id": 5,
+    "name": "Ecchi",
+    "slug": "ecchi",
+    "term_group": 0
+  },
+  {
+    "term_id": 6,
+    "name": "Romance",
+    "slug": "romance",
+    "term_group": 0
+  },
+  {
+    "term_id": 7,
+    "name": "Fantasia",
+    "slug": "fantasia",
+    "term_group": 0
+  },
+  {
+    "term_id": 8,
+    "name": "Vida Escolar",
+    "slug": "vida-escolar",
+    "term_group": 0
+  },
+  {
+    "term_id": 9,
+    "name": "Comédia",
+    "slug": "comedia",
+    "term_group": 0
+  },
+  {
+    "term_id": 10,
+    "name": "Sobrenatural",
+    "slug": "sobrenatural",
+    "term_group": 0
+  },
+  {
+    "term_id": 11,
+    "name": "Slice of Life",
+    "slug": "slice-of-life",
+    "term_group": 0
+  },
+  {
+    "term_id": 12,
+    "name": "Magia",
+    "slug": "magia",
+    "term_group": 0
+  },
+  {
+    "term_id": 13,
+    "name": "Shounen",
+    "slug": "shounen",
+    "term_group": 0
+  },
+  {
+    "term_id": 14,
+    "name": "Game",
+    "slug": "game",
+    "term_group": 0
+  },
+  {
+    "term_id": 16,
+    "name": "Comédia Romântica",
+    "slug": "comedia-romantica",
+    "term_group": 0
+  },
+  {
+    "term_id": 18,
+    "name": "Mecha",
+    "slug": "mecha",
+    "term_group": 0
+  },
+  {
+    "term_id": 19,
+    "name": "SciFi",
+    "slug": "scifi",
+    "term_group": 0
+  },
+  {
+    "term_id": 21,
+    "name": "Ídolo",
+    "slug": "idolo",
+    "term_group": 0
+  },
+  {
+    "term_id": 22,
+    "name": "School Life",
+    "slug": "school-life",
+    "term_group": 0
+  },
+  {
+    "term_id": 23,
+    "name": "Ficção Científica",
+    "slug": "ficcao-cientifica",
+    "term_group": 0
+  },
+  {
+    "term_id": 25,
+    "name": "Girl battleships",
+    "slug": "girl-battleships",
+    "term_group": 0
+  },
+  {
+    "term_id": 27,
+    "name": "Supernatural",
+    "slug": "supernatural",
+    "term_group": 0
+  },
+  {
+    "term_id": 28,
+    "name": "Drama",
+    "slug": "drama",
+    "term_group": 0
+  },
+  {
+    "term_id": 29,
+    "name": "Mistério",
+    "slug": "misterio",
+    "term_group": 0
+  },
+  {
+    "term_id": 30,
+    "name": "Psicológico",
+    "slug": "psicologico",
+    "term_group": 0
+  },
+  {
+    "term_id": 36,
+    "name": "Histórico",
+    "slug": "historico",
+    "term_group": 0
+  },
+  {
+    "term_id": 38,
+    "name": "Yuri",
+    "slug": "yuri",
+    "term_group": 0
+  },
+  {
+    "term_id": 41,
+    "name": "Sci-Fi",
+    "slug": "sci-fi",
+    "term_group": 0
+  },
+  {
+    "term_id": 43,
+    "name": "Harém",
+    "slug": "harem",
+    "term_group": 0
+  },
+  {
+    "term_id": 53,
+    "name": "Culinária",
+    "slug": "culinaria",
+    "term_group": 0
+  },
+  {
+    "term_id": 60,
+    "name": "Shoujo",
+    "slug": "shoujo",
+    "term_group": 0
+  },
+  {
+    "term_id": 65,
+    "name": "Militar",
+    "slug": "militar",
+    "term_group": 0
+  },
+  {
+    "term_id": 66,
+    "name": "Seinen",
+    "slug": "seinen",
+    "term_group": 0
+  },
+  {
+    "term_id": 70,
+    "name": "Demônios",
+    "slug": "demonios",
+    "term_group": 0
+  },
+  {
+    "term_id": 72,
+    "name": "Esportes",
+    "slug": "esportes",
+    "term_group": 0
+  },
+  {
+    "term_id": 75,
+    "name": "Música",
+    "slug": "musica",
+    "term_group": 0
+  },
+  {
+    "term_id": 76,
+    "name": "Espaço",
+    "slug": "espaco",
+    "term_group": 0
+  },
+  {
+    "term_id": 78,
+    "name": "Horror",
+    "slug": "horror",
+    "term_group": 0
+  },
+  {
+    "term_id": 79,
+    "name": "Shoujo Ai",
+    "slug": "shoujo-ai",
+    "term_group": 0
+  },
+  {
+    "term_id": 85,
+    "name": "Polícia",
+    "slug": "policia",
+    "term_group": 0
+  },
+  {
+    "term_id": 86,
+    "name": "Super Poder",
+    "slug": "super-poder",
+    "term_group": 0
+  },
+  {
+    "term_id": 87,
+    "name": "Vampiro",
+    "slug": "vampiro",
+    "term_group": 0
+  },
+  {
+    "term_id": 89,
+    "name": "Beisebol",
+    "slug": "beisebol",
+    "term_group": 0
+  },
+  {
+    "term_id": 91,
+    "name": "Artes Marcial",
+    "slug": "artes-marcial",
+    "term_group": 0
+  },
+  {
+    "term_id": 92,
+    "name": "Infantis",
+    "slug": "infantis",
+    "term_group": 0
+  },
+  {
+    "term_id": 93,
+    "name": "Máfia",
+    "slug": "mafia",
+    "term_group": 0
+  },
+  {
+    "term_id": 94,
+    "name": "Luta",
+    "slug": "luta",
+    "term_group": 0
+  },
+  {
+    "term_id": 95,
+    "name": "Documentário",
+    "slug": "documentario",
+    "term_group": 0
+  },
+  {
+    "term_id": 96,
+    "name": "Investigação",
+    "slug": "investigacao",
+    "term_group": 0
+  },
+  {
+    "term_id": 97,
+    "name": "Terror",
+    "slug": "terror",
+    "term_group": 0
+  },
+  {
+    "term_id": 98,
+    "name": "Político",
+    "slug": "politico",
+    "term_group": 0
+  },
+  {
+    "term_id": 100,
+    "name": "Piratas",
+    "slug": "piratas",
+    "term_group": 0
+  },
+  {
+    "term_id": 104,
+    "name": "Paródia",
+    "slug": "parodia",
+    "term_group": 0
+  },
+  {
+    "term_id": 105,
+    "name": "Sátiro",
+    "slug": "satiro",
+    "term_group": 0
+  },
+  {
+    "term_id": 106,
+    "name": "Humor Negro",
+    "slug": "humor-negro",
+    "term_group": 0
+  },
+  {
+    "term_id": 107,
+    "name": "Samurais",
+    "slug": "samurais",
+    "term_group": 0
+  },
+  {
+    "term_id": 115,
+    "name": "Shounen-ai",
+    "slug": "shounen-ai",
+    "term_group": 0
+  },
+  {
+    "term_id": 119,
+    "name": "Psico",
+    "slug": "psico",
+    "term_group": 0
+  },
+  {
+    "term_id": 133,
+    "name": "Suspense",
+    "slug": "suspense",
+    "term_group": 0
+  },
+  {
+    "term_id": 135,
+    "name": "Cyberpunk",
+    "slug": "cyberpunk",
+    "term_group": 0
+  },
+  {
+    "term_id": 136,
+    "name": "Distopia",
+    "slug": "distopia",
+    "term_group": 0
+  },
+  {
+    "term_id": 137,
+    "name": "Action",
+    "slug": "action",
+    "term_group": 0
+  },
+  {
+    "term_id": 138,
+    "name": "Adventure",
+    "slug": "adventure",
+    "term_group": 0
+  },
+  {
+    "term_id": 139,
+    "name": "Escola",
+    "slug": "escola",
+    "term_group": 0
+  },
+  {
+    "term_id": 140,
+    "name": "Super-Poderes",
+    "slug": "super-poderes",
+    "term_group": 0
+  },
+  {
+    "term_id": 141,
+    "name": "Vampiros",
+    "slug": "vampiros",
+    "term_group": 0
+  },
+  {
+    "term_id": 144,
+    "name": "Josei",
+    "slug": "josei",
+    "term_group": 0
+  },
+  {
+    "term_id": 147,
+    "name": "Maduro",
+    "slug": "maduro",
+    "term_group": 0
+  },
+  {
+    "term_id": 161,
+    "name": "Escolar",
+    "slug": "escolar",
+    "term_group": 0
+  },
+  {
+    "term_id": 163,
+    "name": "Thriller",
+    "slug": "thriller",
+    "term_group": 0
+  },
+  {
+    "term_id": 167,
+    "name": "Shotacon",
+    "slug": "shotacon",
+    "term_group": 0
+  },
+  {
+    "term_id": 168,
+    "name": "Yaoi",
+    "slug": "yaoi",
+    "term_group": 0
+  },
+  {
+    "term_id": 191,
+    "name": "Jogos",
+    "slug": "jogos",
+    "term_group": 0
+  },
+  {
+    "term_id": 203,
+    "name": "Kids",
+    "slug": "kids",
+    "term_group": 0
+  },
+  {
+    "term_id": 209,
+    "name": "Esporte",
+    "slug": "esporte",
+    "term_group": 0
+  },
+  {
+    "term_id": 244,
+    "name": "Mágica",
+    "slug": "magica",
+    "term_group": 0
+  },
+  {
+    "term_id": 246,
+    "name": "Military",
+    "slug": "military",
+    "term_group": 0
+  },
+  {
+    "term_id": 247,
+    "name": "Militares",
+    "slug": "militares",
+    "term_group": 0
+  },
+  {
+    "term_id": 249,
+    "name": "Historical",
+    "slug": "historical",
+    "term_group": 0
+  },
+  {
+    "term_id": 252,
+    "name": "Space",
+    "slug": "space",
+    "term_group": 0
+  },
+  {
+    "term_id": 253,
+    "name": "Comedy",
+    "slug": "comedy",
+    "term_group": 0
+  },
+  {
+    "term_id": 265,
+    "name": "Clubes",
+    "slug": "clubes",
+    "term_group": 0
+  },
+  {
+    "term_id": 266,
+    "name": "Futebol",
+    "slug": "futebol",
+    "term_group": 0
+  },
+  {
+    "term_id": 267,
+    "name": "Historial",
+    "slug": "historial",
+    "term_group": 0
+  },
+  {
+    "term_id": 269,
+    "name": "Artes Marciais",
+    "slug": "artes-marciais",
+    "term_group": 0
+  },
+  {
+    "term_id": 273,
+    "name": "Tragédia",
+    "slug": "tragedia",
+    "term_group": 0
+  },
+  {
+    "term_id": 284,
+    "name": "Hentai",
+    "slug": "hentai",
+    "term_group": 0
+  },
+  {
+    "term_id": 289,
+    "name": "Live Action",
+    "slug": "live-action",
+    "term_group": 0
+  },
+  {
+    "term_id": 293,
+    "name": "Policial",
+    "slug": "policial",
+    "term_group": 0
+  },
+  {
+    "term_id": 320,
+    "name": "Shounem",
+    "slug": "shounem",
+    "term_group": 0
+  },
+  {
+    "term_id": 321,
+    "name": "Samurai",
+    "slug": "samurai",
+    "term_group": 0
+  },
+  {
+    "term_id": 322,
+    "name": "Não Informado!",
+    "slug": "nao-informado",
+    "term_group": 0
+  },
+  {
+    "term_id": 323,
+    "name": "Pós-Apocalíptico",
+    "slug": "pos-apocaliptico",
+    "term_group": 0
+  },
+  {
+    "term_id": 325,
+    "name": "Historia",
+    "slug": "historia",
+    "term_group": 0
+  },
+  {
+    "term_id": 326,
+    "name": "Zombie",
+    "slug": "zombie",
+    "term_group": 0
+  },
+  {
+    "term_id": 352,
+    "name": "tear-studio",
+    "slug": "tear-studio",
+    "term_group": 0
+  },
+  {
+    "term_id": 355,
+    "name": "Carros",
+    "slug": "carros",
+    "term_group": 0
+  },
+  {
+    "term_id": 361,
+    "name": "Isekai",
+    "slug": "isekai",
+    "term_group": 0
+  },
+  {
+    "term_id": 363,
+    "name": "Musical",
+    "slug": "musical",
+    "term_group": 0
+  },
+  {
+    "term_id": 378,
+    "name": "Jogo",
+    "slug": "jogo",
+    "term_group": 0
+  }
+]

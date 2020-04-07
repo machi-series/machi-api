@@ -1,0 +1,27 @@
+{
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node ./build/main.js",
+    "dev": "backpack",
+    "build": "backpack build",
+    "reload": "npm install && npm run build && pm2 restart ecosystem.config.js"
+  },
+  "dependencies": {
+    "@koa/cors": "^2.2.3",
+    "dotenv": "^4.0.0",
+    "form-data": "^3.0.0",
+    "got": "^10.7.0",
+    "koa": "^2.4.1",
+    "koa-body": "^2.5.0",
+    "koa-ejs": "^4.3.0",
+    "koa-logger": "^3.1.0",
+    "koa-router": "^7.3.0",
+    "koa-static": "^5.0.0",
+    "mysql2": "^1.5.1",
+    "p-memoize": "^4.0.0",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "backpack-core": "^0.4.3"
+  }
+}

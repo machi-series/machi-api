@@ -1,0 +1,1244 @@
+[
+  {
+    "term_id": 15,
+    "name": "A-1 Pictures",
+    "slug": "a-1-pictures",
+    "term_group": 0
+  },
+  {
+    "term_id": 17,
+    "name": "Pony Canyon",
+    "slug": "pony-canyon",
+    "term_group": 0
+  },
+  {
+    "term_id": 20,
+    "name": "Xebec",
+    "slug": "xebec",
+    "term_group": 0
+  },
+  {
+    "term_id": 24,
+    "name": "Lerche",
+    "slug": "lerche",
+    "term_group": 0
+  },
+  {
+    "term_id": 26,
+    "name": "Diomedea",
+    "slug": "diomedea",
+    "term_group": 0
+  },
+  {
+    "term_id": 31,
+    "name": "Shuka",
+    "slug": "shuka",
+    "term_group": 0
+  },
+  {
+    "term_id": 32,
+    "name": "Aniplex",
+    "slug": "aniplex",
+    "term_group": 0
+  },
+  {
+    "term_id": 33,
+    "name": "Shaft",
+    "slug": "shaft",
+    "term_group": 0
+  },
+  {
+    "term_id": 34,
+    "name": "Seven Arcs",
+    "slug": "seven-arcs",
+    "term_group": 0
+  },
+  {
+    "term_id": 35,
+    "name": "Sentai Filmworks",
+    "slug": "sentai-filmworks",
+    "term_group": 0
+  },
+  {
+    "term_id": 37,
+    "name": "Production I.G",
+    "slug": "production-i-g",
+    "term_group": 0
+  },
+  {
+    "term_id": 39,
+    "name": "SILVER LINK.",
+    "slug": "silver-link",
+    "term_group": 0
+  },
+  {
+    "term_id": 40,
+    "name": "J.C. Staff",
+    "slug": "j-c-staff",
+    "term_group": 0
+  },
+  {
+    "term_id": 44,
+    "name": "ARMS",
+    "slug": "arms",
+    "term_group": 0
+  },
+  {
+    "term_id": 45,
+    "name": "Brains Base",
+    "slug": "brains-base",
+    "term_group": 0
+  },
+  {
+    "term_id": 46,
+    "name": "Production IMS",
+    "slug": "production-ims",
+    "term_group": 0
+  },
+  {
+    "term_id": 47,
+    "name": "8bit",
+    "slug": "8bit",
+    "term_group": 0
+  },
+  {
+    "term_id": 48,
+    "name": "WIT Studio",
+    "slug": "wit-studio",
+    "term_group": 0
+  },
+  {
+    "term_id": 49,
+    "name": "Toshiba Entertainment",
+    "slug": "toshiba-entertainment",
+    "term_group": 0
+  },
+  {
+    "term_id": 50,
+    "name": "feel.",
+    "slug": "feel",
+    "term_group": 0
+  },
+  {
+    "term_id": 51,
+    "name": "Liden Films",
+    "slug": "liden-films",
+    "term_group": 0
+  },
+  {
+    "term_id": 52,
+    "name": "TNK",
+    "slug": "tnk",
+    "term_group": 0
+  },
+  {
+    "term_id": 57,
+    "name": "Studio Pierrot+",
+    "slug": "studio-pierrot",
+    "term_group": 0
+  },
+  {
+    "term_id": 58,
+    "name": "MAPPA",
+    "slug": "mappa",
+    "term_group": 0
+  },
+  {
+    "term_id": 59,
+    "name": "Satelight",
+    "slug": "satelight",
+    "term_group": 0
+  },
+  {
+    "term_id": 61,
+    "name": "Dogakobo",
+    "slug": "dogakobo",
+    "term_group": 0
+  },
+  {
+    "term_id": 62,
+    "name": "Toei Animation",
+    "slug": "toei-animation",
+    "term_group": 0
+  },
+  {
+    "term_id": 63,
+    "name": "MadHouse",
+    "slug": "madhouse",
+    "term_group": 0
+  },
+  {
+    "term_id": 64,
+    "name": "TYO Animations",
+    "slug": "tyo-animations",
+    "term_group": 0
+  },
+  {
+    "term_id": 67,
+    "name": "DAX Production",
+    "slug": "dax-production",
+    "term_group": 0
+  },
+  {
+    "term_id": 68,
+    "name": "Dream Creation",
+    "slug": "dream-creation",
+    "term_group": 0
+  },
+  {
+    "term_id": 69,
+    "name": "TMS Entertainment",
+    "slug": "tms-entertainment",
+    "term_group": 0
+  },
+  {
+    "term_id": 71,
+    "name": "Dentsu",
+    "slug": "dentsu",
+    "term_group": 0
+  },
+  {
+    "term_id": 73,
+    "name": "Pierrot",
+    "slug": "pierrot",
+    "term_group": 0
+  },
+  {
+    "term_id": 74,
+    "name": "P.A. Works",
+    "slug": "p-a-works",
+    "term_group": 0
+  },
+  {
+    "term_id": 77,
+    "name": "Sunrise",
+    "slug": "sunrise",
+    "term_group": 0
+  },
+  {
+    "term_id": 80,
+    "name": "Kyoto Animation",
+    "slug": "kyoto-animation",
+    "term_group": 0
+  },
+  {
+    "term_id": 81,
+    "name": "Millepensee",
+    "slug": "millepensee",
+    "term_group": 0
+  },
+  {
+    "term_id": 82,
+    "name": "Gainax",
+    "slug": "gainax",
+    "term_group": 0
+  },
+  {
+    "term_id": 83,
+    "name": "Grooove",
+    "slug": "grooove",
+    "term_group": 0
+  },
+  {
+    "term_id": 84,
+    "name": "Bones",
+    "slug": "bones",
+    "term_group": 0
+  },
+  {
+    "term_id": 88,
+    "name": "Gokumi",
+    "slug": "gokumi",
+    "term_group": 0
+  },
+  {
+    "term_id": 90,
+    "name": "ufotable",
+    "slug": "ufotable",
+    "term_group": 0
+  },
+  {
+    "term_id": 99,
+    "name": "Encourage Films",
+    "slug": "encourage-films",
+    "term_group": 0
+  },
+  {
+    "term_id": 101,
+    "name": "Rikka",
+    "slug": "rikka",
+    "term_group": 0
+  },
+  {
+    "term_id": 102,
+    "name": "Polygon Pictures",
+    "slug": "polygon-pictures",
+    "term_group": 0
+  },
+  {
+    "term_id": 103,
+    "name": "Seven",
+    "slug": "seven",
+    "term_group": 0
+  },
+  {
+    "term_id": 108,
+    "name": "Manglobe",
+    "slug": "manglobe",
+    "term_group": 0
+  },
+  {
+    "term_id": 109,
+    "name": "Gonzo",
+    "slug": "gonzo",
+    "term_group": 0
+  },
+  {
+    "term_id": 110,
+    "name": "Studio VOLN",
+    "slug": "studio-voln",
+    "term_group": 0
+  },
+  {
+    "term_id": 111,
+    "name": "Passione",
+    "slug": "passione",
+    "term_group": 0
+  },
+  {
+    "term_id": 112,
+    "name": "Nomad",
+    "slug": "nomad",
+    "term_group": 0
+  },
+  {
+    "term_id": 113,
+    "name": "Tatsunoko Productions",
+    "slug": "tatsunoko-productions",
+    "term_group": 0
+  },
+  {
+    "term_id": 114,
+    "name": "Lay-duce",
+    "slug": "lay-duce",
+    "term_group": 0
+  },
+  {
+    "term_id": 116,
+    "name": "Studio Deen",
+    "slug": "studio-deen",
+    "term_group": 0
+  },
+  {
+    "term_id": 117,
+    "name": "Nexus",
+    "slug": "nexus",
+    "term_group": 0
+  },
+  {
+    "term_id": 118,
+    "name": "Tezuka Productions",
+    "slug": "tezuka-productions",
+    "term_group": 0
+  },
+  {
+    "term_id": 121,
+    "name": "Groove",
+    "slug": "groove",
+    "term_group": 0
+  },
+  {
+    "term_id": 122,
+    "name": "TROYCA",
+    "slug": "troyca",
+    "term_group": 0
+  },
+  {
+    "term_id": 123,
+    "name": "C-Station",
+    "slug": "c-station",
+    "term_group": 0
+  },
+  {
+    "term_id": 124,
+    "name": "White Fox",
+    "slug": "white-fox",
+    "term_group": 0
+  },
+  {
+    "term_id": 125,
+    "name": "TYO Animations Inc.",
+    "slug": "tyo-animations-inc",
+    "term_group": 0
+  },
+  {
+    "term_id": 126,
+    "name": "Zexcs",
+    "slug": "zexcs",
+    "term_group": 0
+  },
+  {
+    "term_id": 127,
+    "name": "Genco",
+    "slug": "genco",
+    "term_group": 0
+  },
+  {
+    "term_id": 128,
+    "name": "Production Reed",
+    "slug": "production-reed",
+    "term_group": 0
+  },
+  {
+    "term_id": 129,
+    "name": "Asahi Production",
+    "slug": "asahi-production",
+    "term_group": 0
+  },
+  {
+    "term_id": 130,
+    "name": "Trigger",
+    "slug": "trigger",
+    "term_group": 0
+  },
+  {
+    "term_id": 131,
+    "name": "Glovision",
+    "slug": "glovision",
+    "term_group": 0
+  },
+  {
+    "term_id": 132,
+    "name": "Tomovies",
+    "slug": "tomovies",
+    "term_group": 0
+  },
+  {
+    "term_id": 134,
+    "name": "Asread",
+    "slug": "asread",
+    "term_group": 0
+  },
+  {
+    "term_id": 142,
+    "name": "GoHands",
+    "slug": "gohands",
+    "term_group": 0
+  },
+  {
+    "term_id": 143,
+    "name": "Deen",
+    "slug": "deen",
+    "term_group": 0
+  },
+  {
+    "term_id": 145,
+    "name": "Telecom Animation Film",
+    "slug": "telecom-animation-film",
+    "term_group": 0
+  },
+  {
+    "term_id": 146,
+    "name": "Project No.9",
+    "slug": "project-no-9",
+    "term_group": 0
+  },
+  {
+    "term_id": 148,
+    "name": "Sanzigen",
+    "slug": "sanzigen",
+    "term_group": 0
+  },
+  {
+    "term_id": 149,
+    "name": "ixtl",
+    "slug": "ixtl",
+    "term_group": 0
+  },
+  {
+    "term_id": 150,
+    "name": "LIDENFILMS",
+    "slug": "lidenfilms",
+    "term_group": 0
+  },
+  {
+    "term_id": 151,
+    "name": "Studio 3Hz",
+    "slug": "studio-3hz",
+    "term_group": 0
+  },
+  {
+    "term_id": 152,
+    "name": "Kinema Citrus",
+    "slug": "kinema-citrus",
+    "term_group": 0
+  },
+  {
+    "term_id": 153,
+    "name": "Tatsunoko Production",
+    "slug": "tatsunoko-production",
+    "term_group": 0
+  },
+  {
+    "term_id": 154,
+    "name": "Linden Films",
+    "slug": "linden-films",
+    "term_group": 0
+  },
+  {
+    "term_id": 162,
+    "name": "David Production",
+    "slug": "david-production",
+    "term_group": 0
+  },
+  {
+    "term_id": 164,
+    "name": "TMS Entertainmen",
+    "slug": "tms-entertainmen",
+    "term_group": 0
+  },
+  {
+    "term_id": 165,
+    "name": "Bridge",
+    "slug": "bridge",
+    "term_group": 0
+  },
+  {
+    "term_id": 166,
+    "name": "Yuusuke Yamamoto",
+    "slug": "yuusuke-yamamoto",
+    "term_group": 0
+  },
+  {
+    "term_id": 190,
+    "name": "OLM",
+    "slug": "olm",
+    "term_group": 0
+  },
+  {
+    "term_id": 192,
+    "name": "Pierrot Plus",
+    "slug": "pierrot-plus",
+    "term_group": 0
+  },
+  {
+    "term_id": 194,
+    "name": "AXsiZ",
+    "slug": "axsiz",
+    "term_group": 0
+  },
+  {
+    "term_id": 195,
+    "name": "Zero-G",
+    "slug": "zero-g",
+    "term_group": 0
+  },
+  {
+    "term_id": 196,
+    "name": "GEMBA",
+    "slug": "gemba",
+    "term_group": 0
+  },
+  {
+    "term_id": 197,
+    "name": "Actas",
+    "slug": "actas",
+    "term_group": 0
+  },
+  {
+    "term_id": 198,
+    "name": "Studio Comet",
+    "slug": "studio-comet",
+    "term_group": 0
+  },
+  {
+    "term_id": 199,
+    "name": "WAO World",
+    "slug": "wao-world",
+    "term_group": 0
+  },
+  {
+    "term_id": 200,
+    "name": "Emon Animation Company",
+    "slug": "emon-animation-company",
+    "term_group": 0
+  },
+  {
+    "term_id": 201,
+    "name": "Não Informado!",
+    "slug": "nao-informado",
+    "term_group": 0
+  },
+  {
+    "term_id": 202,
+    "name": "EMT²",
+    "slug": "emt%c2%b2",
+    "term_group": 0
+  },
+  {
+    "term_id": 204,
+    "name": "Bandai Namco Pictures",
+    "slug": "bandai-namco-pictures",
+    "term_group": 0
+  },
+  {
+    "term_id": 205,
+    "name": "Hoods Drifters Studio",
+    "slug": "hoods-drifters-studio",
+    "term_group": 0
+  },
+  {
+    "term_id": 206,
+    "name": "Ajia-Do",
+    "slug": "ajia-do",
+    "term_group": 0
+  },
+  {
+    "term_id": 207,
+    "name": "Blade",
+    "slug": "blade",
+    "term_group": 0
+  },
+  {
+    "term_id": 208,
+    "name": "Creators in Pack",
+    "slug": "creators-in-pack",
+    "term_group": 0
+  },
+  {
+    "term_id": 210,
+    "name": "Studio PuYUKAI",
+    "slug": "studio-puyukai",
+    "term_group": 0
+  },
+  {
+    "term_id": 211,
+    "name": "Qualia Animation",
+    "slug": "qualia-animation",
+    "term_group": 0
+  },
+  {
+    "term_id": 212,
+    "name": "Pine Jam",
+    "slug": "pine-jam",
+    "term_group": 0
+  },
+  {
+    "term_id": 213,
+    "name": "Tengu Koubou",
+    "slug": "tengu-koubou",
+    "term_group": 0
+  },
+  {
+    "term_id": 214,
+    "name": "Haoliners Animation League",
+    "slug": "haoliners-animation-league",
+    "term_group": 0
+  },
+  {
+    "term_id": 215,
+    "name": "Rising Force",
+    "slug": "rising-force",
+    "term_group": 0
+  },
+  {
+    "term_id": 216,
+    "name": "Graphinica",
+    "slug": "graphinica",
+    "term_group": 0
+  },
+  {
+    "term_id": 217,
+    "name": "NUT",
+    "slug": "nut",
+    "term_group": 0
+  },
+  {
+    "term_id": 218,
+    "name": "Square Enix",
+    "slug": "square-enix",
+    "term_group": 0
+  },
+  {
+    "term_id": 219,
+    "name": "Doga Kobo",
+    "slug": "doga-kobo",
+    "term_group": 0
+  },
+  {
+    "term_id": 220,
+    "name": "Studio Gokumi",
+    "slug": "studio-gokumi",
+    "term_group": 0
+  },
+  {
+    "term_id": 221,
+    "name": "Issen",
+    "slug": "issen",
+    "term_group": 0
+  },
+  {
+    "term_id": 222,
+    "name": "TOHO animation",
+    "slug": "toho-animation",
+    "term_group": 0
+  },
+  {
+    "term_id": 223,
+    "name": "A.C.G.T.",
+    "slug": "a-c-g-t",
+    "term_group": 0
+  },
+  {
+    "term_id": 224,
+    "name": "DR Movie",
+    "slug": "dr-movie",
+    "term_group": 0
+  },
+  {
+    "term_id": 225,
+    "name": "LandQ studios",
+    "slug": "landq-studios",
+    "term_group": 0
+  },
+  {
+    "term_id": 226,
+    "name": "Yaoyorozu",
+    "slug": "yaoyorozu",
+    "term_group": 0
+  },
+  {
+    "term_id": 227,
+    "name": "TYPHOON GRAPHICS",
+    "slug": "typhoon-graphics",
+    "term_group": 0
+  },
+  {
+    "term_id": 235,
+    "name": "Seven Arcs Pictures",
+    "slug": "seven-arcs-pictures",
+    "term_group": 0
+  },
+  {
+    "term_id": 236,
+    "name": "Signal.MD",
+    "slug": "signal-md",
+    "term_group": 0
+  },
+  {
+    "term_id": 237,
+    "name": "C2C",
+    "slug": "c2c",
+    "term_group": 0
+  },
+  {
+    "term_id": 238,
+    "name": "G.Cmay Animation &amp; Film",
+    "slug": "g-cmay-animation-film",
+    "term_group": 0
+  },
+  {
+    "term_id": 239,
+    "name": "Artland",
+    "slug": "artland",
+    "term_group": 0
+  },
+  {
+    "term_id": 240,
+    "name": "Fanworks",
+    "slug": "fanworks",
+    "term_group": 0
+  },
+  {
+    "term_id": 241,
+    "name": "A-Real",
+    "slug": "a-real",
+    "term_group": 0
+  },
+  {
+    "term_id": 242,
+    "name": "Shin-Ei Animation",
+    "slug": "shin-ei-animation",
+    "term_group": 0
+  },
+  {
+    "term_id": 243,
+    "name": "Gathering",
+    "slug": "gathering",
+    "term_group": 0
+  },
+  {
+    "term_id": 245,
+    "name": "The Answer Studio",
+    "slug": "the-answer-studio",
+    "term_group": 0
+  },
+  {
+    "term_id": 248,
+    "name": "Tokyo Movie Shinsha",
+    "slug": "tokyo-movie-shinsha",
+    "term_group": 0
+  },
+  {
+    "term_id": 254,
+    "name": "Studio Gallop",
+    "slug": "studio-gallop",
+    "term_group": 0
+  },
+  {
+    "term_id": 255,
+    "name": "Aniplex of America",
+    "slug": "aniplex-of-america",
+    "term_group": 0
+  },
+  {
+    "term_id": 256,
+    "name": "Platinum Vision",
+    "slug": "platinum-vision",
+    "term_group": 0
+  },
+  {
+    "term_id": 257,
+    "name": "DandeLion Animation Studio LLC",
+    "slug": "dandelion-animation-studio-llc",
+    "term_group": 0
+  },
+  {
+    "term_id": 258,
+    "name": "Studio Hibari",
+    "slug": "studio-hibari",
+    "term_group": 0
+  },
+  {
+    "term_id": 259,
+    "name": "NAZ",
+    "slug": "naz",
+    "term_group": 0
+  },
+  {
+    "term_id": 260,
+    "name": "Magic Bus",
+    "slug": "magic-bus",
+    "term_group": 0
+  },
+  {
+    "term_id": 261,
+    "name": "Drop",
+    "slug": "drop",
+    "term_group": 0
+  },
+  {
+    "term_id": 262,
+    "name": "Jinnis Animation Studios",
+    "slug": "jinnis-animation-studios",
+    "term_group": 0
+  },
+  {
+    "term_id": 263,
+    "name": "W-Toon Studio",
+    "slug": "w-toon-studio",
+    "term_group": 0
+  },
+  {
+    "term_id": 264,
+    "name": "DMM.futureworks",
+    "slug": "dmm-futureworks",
+    "term_group": 0
+  },
+  {
+    "term_id": 268,
+    "name": "Original Netflix",
+    "slug": "original-netflix",
+    "term_group": 0
+  },
+  {
+    "term_id": 271,
+    "name": "Level 5",
+    "slug": "level-5",
+    "term_group": 0
+  },
+  {
+    "term_id": 275,
+    "name": "M.S.C",
+    "slug": "m-s-c",
+    "term_group": 0
+  },
+  {
+    "term_id": 276,
+    "name": "Orange",
+    "slug": "orange",
+    "term_group": 0
+  },
+  {
+    "term_id": 277,
+    "name": "Shirogumi",
+    "slug": "shirogumi",
+    "term_group": 0
+  },
+  {
+    "term_id": 278,
+    "name": "Studio Blanc",
+    "slug": "studio-blanc",
+    "term_group": 0
+  },
+  {
+    "term_id": 279,
+    "name": "PRA",
+    "slug": "pra",
+    "term_group": 0
+  },
+  {
+    "term_id": 280,
+    "name": "Studio A-CAT",
+    "slug": "studio-a-cat",
+    "term_group": 0
+  },
+  {
+    "term_id": 281,
+    "name": "NHK",
+    "slug": "nhk",
+    "term_group": 0
+  },
+  {
+    "term_id": 282,
+    "name": "Connect",
+    "slug": "connect",
+    "term_group": 0
+  },
+  {
+    "term_id": 285,
+    "name": "Lilix",
+    "slug": "lilix",
+    "term_group": 0
+  },
+  {
+    "term_id": 286,
+    "name": "Studio Flad",
+    "slug": "studio-flad",
+    "term_group": 0
+  },
+  {
+    "term_id": 287,
+    "name": "Kamikaze Douga",
+    "slug": "kamikaze-douga",
+    "term_group": 0
+  },
+  {
+    "term_id": 288,
+    "name": "Felix Film",
+    "slug": "felix-film",
+    "term_group": 0
+  },
+  {
+    "term_id": 290,
+    "name": "Imagin",
+    "slug": "imagin",
+    "term_group": 0
+  },
+  {
+    "term_id": 291,
+    "name": "Marvy Jack",
+    "slug": "marvy-jack",
+    "term_group": 0
+  },
+  {
+    "term_id": 292,
+    "name": "Geno Studio",
+    "slug": "geno-studio",
+    "term_group": 0
+  },
+  {
+    "term_id": 294,
+    "name": "Production doA",
+    "slug": "production-doa",
+    "term_group": 0
+  },
+  {
+    "term_id": 295,
+    "name": "Dwango",
+    "slug": "dwango",
+    "term_group": 0
+  },
+  {
+    "term_id": 296,
+    "name": "Hoods Entertainment",
+    "slug": "hoods-entertainment",
+    "term_group": 0
+  },
+  {
+    "term_id": 297,
+    "name": "Fukushima Gainax",
+    "slug": "fukushima-gainax",
+    "term_group": 0
+  },
+  {
+    "term_id": 298,
+    "name": "EKACHI EPILKA",
+    "slug": "ekachi-epilka",
+    "term_group": 0
+  },
+  {
+    "term_id": 299,
+    "name": "Studio LAN",
+    "slug": "studio-lan",
+    "term_group": 0
+  },
+  {
+    "term_id": 300,
+    "name": "Yumeta Company",
+    "slug": "yumeta-company",
+    "term_group": 0
+  },
+  {
+    "term_id": 301,
+    "name": "NHK Enterprises",
+    "slug": "nhk-enterprises",
+    "term_group": 0
+  },
+  {
+    "term_id": 318,
+    "name": "ARK",
+    "slug": "ark",
+    "term_group": 0
+  },
+  {
+    "term_id": 319,
+    "name": "Ezo’la",
+    "slug": "ezola",
+    "term_group": 0
+  },
+  {
+    "term_id": 324,
+    "name": "GEEKTOYS",
+    "slug": "geektoys",
+    "term_group": 0
+  },
+  {
+    "term_id": 327,
+    "name": "Clover Works",
+    "slug": "clover-works",
+    "term_group": 0
+  },
+  {
+    "term_id": 328,
+    "name": "DandeLion Animation Studio",
+    "slug": "dandelion-animation-studio",
+    "term_group": 0
+  },
+  {
+    "term_id": 329,
+    "name": "Jumonji",
+    "slug": "jumonji",
+    "term_group": 0
+  },
+  {
+    "term_id": 330,
+    "name": "Magia Doraglier",
+    "slug": "magia-doraglier",
+    "term_group": 0
+  },
+  {
+    "term_id": 331,
+    "name": "Saetta",
+    "slug": "saetta",
+    "term_group": 0
+  },
+  {
+    "term_id": 332,
+    "name": "Bouncy",
+    "slug": "bouncy",
+    "term_group": 0
+  },
+  {
+    "term_id": 333,
+    "name": "DLE",
+    "slug": "dle",
+    "term_group": 0
+  },
+  {
+    "term_id": 348,
+    "name": "Cygames Pictures",
+    "slug": "cygames-pictures",
+    "term_group": 0
+  },
+  {
+    "term_id": 349,
+    "name": "Lesprit",
+    "slug": "lesprit",
+    "term_group": 0
+  },
+  {
+    "term_id": 350,
+    "name": "Gaina",
+    "slug": "gaina",
+    "term_group": 0
+  },
+  {
+    "term_id": 351,
+    "name": "Xflag",
+    "slug": "xflag",
+    "term_group": 0
+  },
+  {
+    "term_id": 353,
+    "name": "Comédia",
+    "slug": "comedia",
+    "term_group": 0
+  },
+  {
+    "term_id": 354,
+    "name": "Fantasia",
+    "slug": "fantasia",
+    "term_group": 0
+  },
+  {
+    "term_id": 356,
+    "name": "Lapin Track",
+    "slug": "lapin-track",
+    "term_group": 0
+  },
+  {
+    "term_id": 357,
+    "name": "Arvo Animation",
+    "slug": "arvo-animation",
+    "term_group": 0
+  },
+  {
+    "term_id": 358,
+    "name": "Tear Studio",
+    "slug": "tear-studio",
+    "term_group": 0
+  },
+  {
+    "term_id": 360,
+    "name": "Yokohama Animation Lab",
+    "slug": "yokohama-animation-lab",
+    "term_group": 0
+  },
+  {
+    "term_id": 362,
+    "name": "Ezόla",
+    "slug": "ez%cf%8cla",
+    "term_group": 0
+  },
+  {
+    "term_id": 364,
+    "name": "Maho Films",
+    "slug": "maho-films",
+    "term_group": 0
+  },
+  {
+    "term_id": 365,
+    "name": "CloverWorks",
+    "slug": "cloverworks",
+    "term_group": 0
+  },
+  {
+    "term_id": 366,
+    "name": "EMT Squared",
+    "slug": "emt-squared",
+    "term_group": 0
+  },
+  {
+    "term_id": 367,
+    "name": "Anima&amp;Co.",
+    "slug": "animaco",
+    "term_group": 0
+  },
+  {
+    "term_id": 368,
+    "name": "Revoroot",
+    "slug": "revoroot",
+    "term_group": 0
+  },
+  {
+    "term_id": 369,
+    "name": "Bibury Animation Studios",
+    "slug": "bibury-animation-studios",
+    "term_group": 0
+  },
+  {
+    "term_id": 370,
+    "name": "ENGI",
+    "slug": "engi",
+    "term_group": 0
+  },
+  {
+    "term_id": 371,
+    "name": "Nihon Ad Systems",
+    "slug": "nihon-ad-systems",
+    "term_group": 0
+  },
+  {
+    "term_id": 372,
+    "name": "SILVER",
+    "slug": "silver",
+    "term_group": 0
+  },
+  {
+    "term_id": 373,
+    "name": "Ajia-do Animation Works",
+    "slug": "ajia-do-animation-works",
+    "term_group": 0
+  },
+  {
+    "term_id": 374,
+    "name": "Egg Firm",
+    "slug": "egg-firm",
+    "term_group": 0
+  },
+  {
+    "term_id": 375,
+    "name": "Magic Capsule",
+    "slug": "magic-capsule",
+    "term_group": 0
+  },
+  {
+    "term_id": 376,
+    "name": "flying DOG",
+    "slug": "flying-dog",
+    "term_group": 0
+  },
+  {
+    "term_id": 377,
+    "name": "Asatsu DK",
+    "slug": "asatsu-dk",
+    "term_group": 0
+  },
+  {
+    "term_id": 379,
+    "name": "Science SARU",
+    "slug": "science-saru",
+    "term_group": 0
+  },
+  {
+    "term_id": 380,
+    "name": "Children's Playground Entertainment",
+    "slug": "childrens-playground-entertainment",
+    "term_group": 0
+  },
+  {
+    "term_id": 381,
+    "name": "Studio Hokiboshi",
+    "slug": "studio-hokiboshi",
+    "term_group": 0
+  },
+  {
+    "term_id": 382,
+    "name": "Studio Signpost",
+    "slug": "studio-signpost",
+    "term_group": 0
+  },
+  {
+    "term_id": 383,
+    "name": "Albacrow",
+    "slug": "albacrow",
+    "term_group": 0
+  },
+  {
+    "term_id": 384,
+    "name": "Dynamo Pictures",
+    "slug": "dynamo-pictures",
+    "term_group": 0
+  }
+]
