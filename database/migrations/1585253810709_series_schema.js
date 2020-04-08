@@ -44,7 +44,7 @@ class SeriesSchema extends Schema {
       table.string('releaseTime').nullable()
       table.integer('episodeDuration').nullable()
       table.integer('weekDay').nullable()
-      table.string('trailer').nullable()
+      table.text('trailer').nullable()
       table.string('producer').nullable()
       table.enum('type', ['series', 'ova', 'movie', 'special']).notNullable()
       table
