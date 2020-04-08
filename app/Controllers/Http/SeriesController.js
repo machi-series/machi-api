@@ -47,7 +47,7 @@ SELECT
   s1."seriesId", count(s1.*)
 FROM
   (
-    SELECT DISTINCT "seriesId", ip FROM hits WHERE created_at > ?
+    SELECT "seriesId" FROM hits WHERE created_at > ?
   ) as s1
 GROUP BY
   s1."seriesId"
@@ -58,7 +58,7 @@ LIMIT 5
         [oneWeekAgo]
       )
       const ids = result.rows.map((r) => r.seriesId)
-      const series = await Series.query().whereIn('id', ids).fetch()
+      const series = await query.whereIn('id', ids).fetch()
       return ids.map((id) => series.rows.find((s) => s.id === id))
     }
 
