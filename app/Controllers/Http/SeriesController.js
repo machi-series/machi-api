@@ -2,14 +2,20 @@
 
 const ValidationFormatter = use('ValidationFormatter')
 const Series = use('App/Models/Series')
+const Hit = use('App/Models/Hit')
+const Database = use('Database')
 const { validateAll, sanitize, sanitizor } = use('Validator')
 const statuses = ['draft', 'published', 'deleted', 'revision']
 const classification = ['open', '10', '12', '14', '16', '18']
 const releaseStatus = ['tba', 'airing', 'complete', 'onhold', 'canceled']
 const types = ['series', 'ova', 'movie', 'special']
 
+function hit(seriesId, ip) {
+  return Hit.create({ seriesId, ip }) //.catch(() => {})
+}
+
 class SeriesController {
-  index({ request, auth }) {
+  async index({ request, auth }) {
     const {
       page = 1,
       order = 'id',
@@ -20,6 +26,7 @@ class SeriesController {
       limit = 20,
       type,
       full = false,
+      top = false,
     } = request.get()
     const query = Series.query()
       .with('author')
@@ -28,6 +35,32 @@ class SeriesController {
       .with('editedBy.avatar')
       .with('tags')
       .with('cover')
+
+    if (Boolean(top)) {
+      const oneWeekAgo = new Date(
+        new Date().getTime() - 1000 * 60 * 60 * 24 * 7
+      )
+
+      const result = await Database.raw(
+        `\
+SELECT
+  s1."seriesId", count(s1.*)
+FROM
+  (
+    SELECT DISTINCT "seriesId", ip FROM hits WHERE created_at > ?
+  ) as s1
+GROUP BY
+  s1."seriesId"
+ORDER BY
+  count(*) desc
+LIMIT 5
+`,
+        [oneWeekAgo]
+      )
+      const ids = result.rows.map((r) => r.seriesId)
+      const series = await Series.query().whereIn('id', ids).fetch()
+      return ids.map((id) => series.rows.find((s) => s.id === id))
+    }
 
     if (Boolean(transmissions)) {
       return query
@@ -61,11 +94,31 @@ class SeriesController {
       ? Number.MAX_SAFE_INTEGER
       : Math.min(Number(limit), 20)
 
-    return query.orderBy(order, direction).paginate(Number(page), realLimit)
+    const result = await query
+      .orderBy(order, direction)
+      .paginate(Number(page), realLimit)
+
+    const countHit =
+      (!auth.user || auth.user.role === 'user') &&
+      slug &&
+      result.rows.length === 1
+
+    if (countHit) {
+      hit(result.rows[0].id, request.ip())
+    }
+
+    return result
   }
 
-  async show({ params }) {
-    return getById(params.id)
+  async show({ params, auth, request }) {
+    const found = await getById(params.id)
+
+    const countHit = !auth.user || auth.user.role === 'user'
+    if (countHit) {
+      hit(found.id, request.ip())
+    }
+
+    return found
   }
 
   async store({ request, response }) {
