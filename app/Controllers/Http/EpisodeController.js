@@ -61,7 +61,7 @@ priority ${specialDirection},
   WHEN type = 'movie' THEN 3
   ELSE 4
   END) ${specialDirection},
-  number::INTEGER ${specialDirection}
+  number::FLOAT ${specialDirection}
 `
       query.orderByRaw(specialOrderby)
 
