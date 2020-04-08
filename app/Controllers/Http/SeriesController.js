@@ -146,7 +146,7 @@ LIMIT 5
       title: 'required|string',
       slug: 'required|string|unique:series',
       authorId: 'required|exists:users,id',
-      coverId: 'required|exists:images,id',
+      coverId: 'exists:images,id',
       synopsis: 'required|string',
       status: `string|in:${statuses.join(',')}`,
       tags: 'array|existsAll:tags,id',

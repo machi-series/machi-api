@@ -132,7 +132,7 @@ ORDER BY
       slug: 'required|string|unique:episodes',
       seriesId: 'required|exists:series,id',
       authorId: 'required|exists:users,id',
-      coverId: 'required|exists:images,id',
+      coverId: 'exists:images,id',
       status: `string|in:${statuses.join(',')}`,
       number: 'required|string',
       links: 'required|object|links',
