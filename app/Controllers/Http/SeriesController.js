@@ -111,7 +111,7 @@ LIMIT 5
   }
 
   async show({ params, auth, request }) {
-    const found = await getById(params.id)
+    const found = await getById(params.id, auth)
 
     const countHit = !auth.user || auth.user.role === 'user'
     if (countHit) {
@@ -119,6 +119,22 @@ LIMIT 5
     }
 
     return found
+  }
+
+  async related({ params, auth }) {
+    const found = await getById(params.id, auth)
+
+    const relatedSeries = await baseQuery()
+      .whereIn(
+        'id',
+        Object.keys(found.relatedSeries).map((k) => +k)
+      )
+      .fetch()
+
+    return Object.entries(found.relatedSeries).map(([key, label]) => ({
+      series: relatedSeries.rows.find((s) => s.id === +key),
+      label,
+    }))
   }
 
   async store({ request, response }) {
@@ -273,12 +289,25 @@ LIMIT 5
 
 module.exports = SeriesController
 
-function getById(id) {
+function baseQuery() {
   return Series.query()
     .with('author')
     .with('editedBy')
     .with('tags')
     .with('cover')
+}
+
+function getById(id, auth) {
+  const query = Series.query()
+    .with('author')
+    .with('editedBy')
+    .with('tags')
+    .with('cover')
     .where('id', id)
-    .firstOrFail()
+
+  if (!auth || !auth.user || auth.user.role === 'user') {
+    query.where('status', 'published')
+  }
+
+  return query.firstOrFail()
 }

@@ -27,6 +27,7 @@ const defaultCrudMiddlewares = new Map([
 Route.resource('series', 'SeriesController')
   .apiOnly()
   .middleware(defaultCrudMiddlewares)
+Route.get('/series/:id/related', 'SeriesController.related')
 Route.resource('tags', 'TagController')
   .apiOnly()
   .middleware(defaultCrudMiddlewares)
