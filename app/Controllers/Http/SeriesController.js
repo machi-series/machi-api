@@ -140,6 +140,7 @@ LIMIT 5
       'classification',
       'releaseStatus',
       'type',
+      'relatedSeries',
     ])
     const { tags = [] } = request.only(['tags'])
 
@@ -162,6 +163,7 @@ LIMIT 5
       classification: `string|in:${classification.join(',')}`,
       releaseStatus: `string|in:${releaseStatus.join(',')}`,
       type: `required|string|in:${types.join(',')}`,
+      relatedSeries: 'required|object|relatedSeries',
     }
     const satinization = {
       slug: 'slug',
@@ -213,6 +215,7 @@ LIMIT 5
       'classification',
       'releaseStatus',
       'type',
+      'relatedSeries',
     ])
     const { tags = [] } = request.only(['tags'])
 
@@ -237,6 +240,7 @@ LIMIT 5
       classification: `string|in:${classification.join(',')}`,
       releaseStatus: `string|in:${releaseStatus.join(',')}`,
       type: `string|in:${types.join(',')}`,
+      relatedSeries: 'object|relatedSeries',
     }
     const satinization = {
       slug: 'slug',

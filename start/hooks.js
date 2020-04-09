@@ -66,6 +66,36 @@ hooks.after.providersRegistered(() => {
     }
   })
 
+  Validator.extend('relatedSeries', async function linksValidator(
+    data,
+    field,
+    message,
+    args,
+    get
+  ) {
+    const value = get(data, field)
+    if (value === null || typeof value !== 'object') {
+      return
+    }
+
+    const validPayload = Object.entries(value).every(
+      ([key, value]) => Number.isFinite(+key) && typeof value === 'string'
+    )
+
+    if (!validPayload) {
+      throw message
+    }
+
+    const ids = Object.keys(value)
+    const [{ count }] = await Database.table('series')
+      .whereIn('id', ids)
+      .count()
+
+    if (+count !== ids.length) {
+      throw message
+    }
+  })
+
   Validator.extend('brazilianDate', function dateValidator(
     data,
     field,

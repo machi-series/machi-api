@@ -44,6 +44,7 @@
   "under": "{field} precisa ser abaixo de {argument0}.",
   "unique": "{field} já existe e precisa ser único.",
   "existsAll": "{field} deve conter índices válidos.",
+  "relatedSeries": "{field} deve ser um objeto de IDs e títulos.",
   "url": "URL inválida.",
   "brazilianDate": "data inválida.",
   "brazilianTime": "hora inválida."
