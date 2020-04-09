@@ -2,6 +2,7 @@
 
 /** @type {import('@adonisjs/lucid/src/Schema')} */
 const Schema = use('Schema')
+const knex = require('knex')
 
 class SeriesSchema extends Schema {
   up() {
@@ -46,7 +47,7 @@ class SeriesSchema extends Schema {
       table.integer('weekDay').nullable()
       table.text('trailer').nullable()
       table.string('producer').nullable()
-      table.jsonb('relatedSeries').notNullable().defaultTo({})
+      table.jsonb('relatedSeries').notNullable().defaultTo(knex.raw('{}'))
       table.enum('type', ['series', 'ova', 'movie', 'special']).notNullable()
       table
         .enum('classification', ['open', '10', '12', '14', '16', '18'])
