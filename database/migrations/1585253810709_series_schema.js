@@ -46,7 +46,7 @@ class SeriesSchema extends Schema {
       table.integer('weekDay').nullable()
       table.text('trailer').nullable()
       table.string('producer').nullable()
-      table.jsonb('relatedSeries').notNullable()
+      table.jsonb('relatedSeries').notNullable().defaultTo(JSON.stringify({}))
       table.enum('type', ['series', 'ova', 'movie', 'special']).notNullable()
       table
         .enum('classification', ['open', '10', '12', '14', '16', '18'])
