@@ -5,7 +5,11 @@ const Model = use('Model')
 
 class Series extends Model {
   getRelatedSeries(value) {
-    return JSON.parse(value)
+    try {
+      return JSON.parse(value)
+    } catch (err) {
+      return value
+    }
   }
 
   setRelatedSeries(value) {
