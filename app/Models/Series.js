@@ -4,6 +4,14 @@
 const Model = use('Model')
 
 class Series extends Model {
+  getRelatedSeries(value) {
+    return JSON.parse(value)
+  }
+
+  setRelatedSeries(value) {
+    return JSON.stringify(value)
+  }
+
   author() {
     return this.hasOne('App/Models/User', 'authorId', 'id')
   }
