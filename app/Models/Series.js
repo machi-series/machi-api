@@ -6,14 +6,14 @@ const Model = use('Model')
 class Series extends Model {
   getRelatedSeries(value) {
     try {
-      return JSON.parse(value)
+      return typeof value === 'string' ? JSON.parse(value) : value
     } catch (err) {
       return value
     }
   }
 
   setRelatedSeries(value) {
-    return JSON.stringify(value)
+    return typeof value === 'string' ? JSON.stringify(value) : value
   }
 
   author() {
