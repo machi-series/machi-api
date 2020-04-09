@@ -25,6 +25,8 @@ const jimp = require('jimp')
 const path = require('path')
 const os = require('os')
 const fs = require('fs').promises
+const imagemin = require('imagemin')
+const imageminJpegtran = require('imagemin-jpegtran')
 
 const oldTags = require('./atc-api/oldTags.json')
 const oldUsers = require('./atc-api/oldUsers.json')
@@ -74,11 +76,12 @@ class DatabaseSeeder {
       return acc
     }, {})
 
-    const mergedOldSeries = oldSeries.map((old) => ({
-      ...(transmissions.find((t) => +t.belongsToPostId === old.id) || null),
-      ...old,
-    }))
-    // .slice(0, 25) // TEST ONLY
+    const mergedOldSeries = oldSeries
+      .map((old) => ({
+        ...(transmissions.find((t) => +t.belongsToPostId === old.id) || null),
+        ...old,
+      }))
+      .slice(0, 25) // TEST ONLY
 
     console.log(mergedOldSeries.length)
 
@@ -290,7 +293,7 @@ function mapSeriesType(t) {
 }
 
 async function prepareEpisode(episode, reUsers, reSeries) {
-  const image = await tryToGetImage(episode.image, { width: 320, height: 190 })
+  const image = await tryToGetImage(episode.image, { width: 330, height: 180 })
 
   console.log(episode.created_at)
   const json = {
@@ -368,7 +371,7 @@ async function tryToGetImage(image, params = {}) {
 
   const extension = path.extname(image)
   const fileName = path.basename(image, extension)
-  const prefix = `migrated`
+  const prefix = `migrated5`
   const originalName = `${prefix}-${fileName}${extension}`
   const thumbnailName = `${prefix}-${fileName}-thumbnail${extension}`
 
@@ -430,8 +433,14 @@ async function tryToGetImage(image, params = {}) {
       tasks.push(
         thumbnail
           .resize(thumnailDimensions.width, thumnailDimensions.height)
+          .quality(75)
           .getBufferAsync(jimp.MIME_JPEG)
-          .then((data) => Drive.put(thumbnailName, data))
+          .then((buffer) =>
+            imagemin.buffer(buffer, {
+              plugins: [imageminJpegtran({ progressive: true })],
+            })
+          )
+          .then((buffer) => Drive.put(thumbnailName, buffer))
       )
     }
 
