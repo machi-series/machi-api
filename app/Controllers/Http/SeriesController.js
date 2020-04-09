@@ -122,7 +122,7 @@ LIMIT 5
   }
 
   async related({ params, auth }) {
-    const found = await getById(params.id, auth)
+    const found = (await getById(params.id, auth)).toJSON()
 
     const relatedSeries = await baseQuery()
       .whereIn(
