@@ -202,6 +202,7 @@ async function prepareUser(user) {
 
 async function prepareSeries(series, reUsers, reTags, reStudio) {
   const image = await tryToGetImage(series.image, { width: 220, height: 320 })
+  // console.log(series.image)
 
   const json = {
     created_at: series.created_at,
@@ -294,7 +295,7 @@ function mapSeriesType(t) {
 async function prepareEpisode(episode, reUsers, reSeries) {
   const image = await tryToGetImage(episode.image, { width: 330, height: 180 })
 
-  console.log(episode.created_at)
+  // console.log(episode.created_at)
   const json = {
     created_at: episode.created_at,
     updated_at: episode.updated_at,
@@ -379,54 +380,10 @@ async function tryToGetImage(image, params = {}) {
       .access(path.join(Env.get('IMAGE_STORAGE'), file))
       .then(() => true)
       .catch(() => false)
+
   const processed = (
     await Promise.all([originalName, thumbnailName].map(exists))
   ).every((x) => x)
-
-  if (!processed) {
-    const tempname = path.join(uploadsFolder, localImage)
-    // console.log(image, tempname)
-
-    let imageStream
-    try {
-      imageStream = await new Promise(async (resolve, reject) => {
-        try {
-          const file = await fs.readFile(tempname)
-          resolve(file)
-        } catch (err) {
-          console.log('not found locally', image)
-          request.get(image, async (err, res, body) => {
-            if (err) {
-              return reject(err)
-            }
-            let buffer
-            try {
-              buffer = await streamToBuffer(body)
-            } catch (err) {
-              return reject(err)
-            }
-            await fs.writeFile(tempname, buffer, { encoding: 'utf8' })
-            resolve(buffer)
-          })
-        }
-      })
-    } catch (err) {
-      return
-    }
-
-    const original = await jimp.read(imageStream)
-    const thumbnail = original.clone()
-
-    const thumnailDimensions = {
-      width: width ? +width : jimp.AUTO,
-      height: height ? +height : jimp.AUTO,
-    }
-
-    const tasks = [
-      original
-        .getBufferAsync(jimp.MIME_JPEG)
-        .then((data) => Drive.put(originalName, data)),
-    ]
 
   if (!processed) {
     const tempname = path.join(uploadsFolder, localImage)
@@ -495,12 +452,12 @@ async function tryToGetImage(image, params = {}) {
     originalName,
     thumbnailName: needsThumbnail ? thumbnailName : null,
   })
-
-  // c
-
-  // return resolveOrTimeout(p, 30000)
-  // .catch(() => false)
 }
+
+// c
+
+// return resolveOrTimeout(p, 30000)
+// .catch(() => false)
 
 function resolveOrTimeout(p, time) {
   return new Promise((resolve) => {
