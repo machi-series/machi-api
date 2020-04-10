@@ -4,6 +4,8 @@ const Image = use('App/Models/Image')
 const Drive = use('Drive')
 const path = require('path')
 const jimp = require('jimp')
+const imagemin = require('imagemin')
+const imageminJpegtran = require('imagemin-jpegtran')
 
 class ImageController {
   async show({ params }) {
@@ -40,7 +42,13 @@ class ImageController {
         tasks.push(
           thumbnail
             .resize(thumnailDimensions.width, thumnailDimensions.height)
+            .quality(75)
             .getBufferAsync(jimp.MIME_JPEG)
+            .then((buffer) =>
+              imagemin.buffer(buffer, {
+                plugins: [imageminJpegtran({ progressive: true })],
+              })
+            )
             .then((data) => Drive.put(thumbnailName, data))
         )
       }
