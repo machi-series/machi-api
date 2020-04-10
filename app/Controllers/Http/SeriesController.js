@@ -137,7 +137,7 @@ LIMIT 5
     }))
   }
 
-  async store({ request, response }) {
+  async store({ request, response, auth }) {
     const rawData = request.only([
       'authorId',
       'title',
@@ -179,7 +179,7 @@ LIMIT 5
       classification: `string|in:${classification.join(',')}`,
       releaseStatus: `string|in:${releaseStatus.join(',')}`,
       type: `required|string|in:${types.join(',')}`,
-      relatedSeries: 'required|object|relatedSeries',
+      relatedSeries: 'object|relatedSeries',
     }
     const satinization = {
       slug: 'slug',
@@ -191,6 +191,9 @@ LIMIT 5
     }
     if (!data.status) {
       data.status = 'draft'
+    }
+    if (!data.relatedSeries) {
+      data.relatedSeries = {}
     }
 
     const validated = await validateAll(
@@ -206,10 +209,10 @@ LIMIT 5
     const series = await Series.create(data)
     await series.tags().sync(tags.map((t) => +t))
 
-    return getById(series.id)
+    return getById(series.id, auth)
   }
 
-  async update({ params, request, response }) {
+  async update({ params, request, response, auth }) {
     const series = await Series.findOrFail(params.id)
     const rawData = request.only([
       'revisionOfId',
@@ -277,7 +280,7 @@ LIMIT 5
     await series.save()
     await series.tags().sync(tags.map((t) => +t))
 
-    return getById(series.id)
+    return getById(series.id, auth)
   }
 
   async destroy({ params, response }) {
