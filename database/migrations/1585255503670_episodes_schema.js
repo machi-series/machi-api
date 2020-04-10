@@ -46,6 +46,7 @@ class EpisodesSchema extends Schema {
       table.string('slug').notNullable().unique()
       table.string('number').notNullable()
       table.string('source').nullable()
+      table.boolean('ignoreIndex').notNullable().defaultTo(false)
       table.integer('priority').notNullable().defaultTo(0)
       table
         .jsonb('links')

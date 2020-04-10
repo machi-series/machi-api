@@ -23,6 +23,7 @@ class EpisodeController {
       limit = 30,
       around = false,
       slug,
+      ignoreIndex,
     } = request.get()
     const query = Episode.query()
       .with('author.avatar')
@@ -46,6 +47,10 @@ class EpisodeController {
 
     if (type) {
       query.where('type', type)
+    }
+
+    if (ignoreIndex != null) {
+      query.where('ignoreIndex', Boolean(ignoreIndex))
     }
 
     if (search) {
@@ -138,6 +143,7 @@ ORDER BY
       'quality',
       'coverId',
       'source',
+      'ignoreIndex',
     ])
 
     const validation = {
@@ -152,6 +158,7 @@ ORDER BY
       type: `required|string|in:${episodeTypes.join(',')}`,
       quality: `required|string|in:${episodeQualities.join(',')}`,
       source: 'string',
+      ignoreIndex: 'boolean',
     }
     const satinization = {
       slug: 'slug',
@@ -194,6 +201,7 @@ ORDER BY
       'quality',
       'coverId',
       'source',
+      'ignoreIndex',
     ])
 
     const validation = {
@@ -209,6 +217,7 @@ ORDER BY
       type: `string|in:${episodeTypes.join(',')}`,
       quality: `string|in:${episodeQualities.join(',')}`,
       source: 'string',
+      ignoreIndex: 'boolean',
     }
     const satinization = {
       slug: 'slug',
