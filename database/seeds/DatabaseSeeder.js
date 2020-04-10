@@ -76,12 +76,11 @@ class DatabaseSeeder {
       return acc
     }, {})
 
-    const mergedOldSeries = oldSeries
-      .map((old) => ({
-        ...(transmissions.find((t) => +t.belongsToPostId === old.id) || null),
-        ...old,
-      }))
-      .slice(0, 25) // TEST ONLY
+    const mergedOldSeries = oldSeries.map((old) => ({
+      ...(transmissions.find((t) => +t.belongsToPostId === old.id) || null),
+      ...old,
+    }))
+    // .slice(0, 25) // TEST ONLY
 
     console.log(mergedOldSeries.length)
 
@@ -371,7 +370,7 @@ async function tryToGetImage(image, params = {}) {
 
   const extension = path.extname(image)
   const fileName = path.basename(image, extension)
-  const prefix = `migrated5`
+  const prefix = `migrated`
   const originalName = `${prefix}-${fileName}${extension}`
   const thumbnailName = `${prefix}-${fileName}-thumbnail${extension}`
 
@@ -383,6 +382,51 @@ async function tryToGetImage(image, params = {}) {
   const processed = (
     await Promise.all([originalName, thumbnailName].map(exists))
   ).every((x) => x)
+
+  if (!processed) {
+    const tempname = path.join(uploadsFolder, localImage)
+    // console.log(image, tempname)
+
+    let imageStream
+    try {
+      imageStream = await new Promise(async (resolve, reject) => {
+        try {
+          const file = await fs.readFile(tempname)
+          resolve(file)
+        } catch (err) {
+          console.log('not found locally', image)
+          request.get(image, async (err, res, body) => {
+            if (err) {
+              return reject(err)
+            }
+            let buffer
+            try {
+              buffer = await streamToBuffer(body)
+            } catch (err) {
+              return reject(err)
+            }
+            await fs.writeFile(tempname, buffer, { encoding: 'utf8' })
+            resolve(buffer)
+          })
+        }
+      })
+    } catch (err) {
+      return
+    }
+
+    const original = await jimp.read(imageStream)
+    const thumbnail = original.clone()
+
+    const thumnailDimensions = {
+      width: width ? +width : jimp.AUTO,
+      height: height ? +height : jimp.AUTO,
+    }
+
+    const tasks = [
+      original
+        .getBufferAsync(jimp.MIME_JPEG)
+        .then((data) => Drive.put(originalName, data)),
+    ]
 
   if (!processed) {
     const tempname = path.join(uploadsFolder, localImage)
