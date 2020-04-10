@@ -34,6 +34,8 @@ Route.resource('tags', 'TagController')
 Route.resource('episodes', 'EpisodeController')
   .apiOnly()
   .middleware(defaultCrudMiddlewares)
+Route.get('/links/:episodeId/:quality/:index', 'EpisodeController.requestLink')
+Route.get('/links/:id', 'EpisodeController.retreiveLink')
 Route.resource('users', 'UserController')
   .apiOnly()
   .middleware(
