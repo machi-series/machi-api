@@ -19,7 +19,7 @@ class EpisodeController {
       search,
       specialOrder,
       type,
-      limit = 20,
+      limit = 30,
       around = false,
       slug,
     } = request.get()
@@ -105,7 +105,7 @@ ORDER BY
       query.orderBy(order, direction)
     }
 
-    return query.paginate(Number(page), Math.min(Number(limit), 20))
+    return query.paginate(Number(page), Math.min(Number(limit), 30))
   }
 
   async show({ params }) {

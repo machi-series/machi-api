@@ -23,7 +23,7 @@ class SeriesController {
       search,
       slug,
       transmissions = false,
-      limit = 20,
+      limit = 30,
       type,
       full = false,
       top = false,
@@ -92,7 +92,7 @@ LIMIT 5
 
     const realLimit = full
       ? Number.MAX_SAFE_INTEGER
-      : Math.min(Number(limit), 20)
+      : Math.min(Number(limit), 30)
 
     const result = await query
       .orderBy(order, direction)
