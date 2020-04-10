@@ -108,11 +108,11 @@ ORDER BY
     return query.paginate(Number(page), Math.min(Number(limit), 30))
   }
 
-  async show({ params }) {
-    return getById(params.id)
+  async show({ params, auth }) {
+    return getById(params.id, auth)
   }
 
-  async store({ request, response }) {
+  async store({ request, response, auth }) {
     const rawData = request.only([
       'seriesId',
       'authorId',
@@ -163,10 +163,10 @@ ORDER BY
     }
 
     const episode = await Episode.create(data)
-    return getById(episode.id)
+    return getById(episode.id, auth)
   }
 
-  async update({ params, request, response }) {
+  async update({ params, request, response, auth }) {
     const episode = await Episode.findOrFail(params.id)
     const rawData = request.only([
       'revisionOfId',
@@ -214,7 +214,7 @@ ORDER BY
 
     episode.merge(data)
     await episode.save()
-    return getById(episode.id)
+    return getById(episode.id, auth)
   }
 
   async destroy({ params, response }) {
@@ -226,12 +226,17 @@ ORDER BY
 
 module.exports = EpisodeController
 
-function getById(id) {
-  return Episode.query()
+function getById(id, auth) {
+  const query = Episode.query()
     .with('author')
     .with('editedBy')
     .with('series')
     .with('cover')
     .where('id', id)
-    .firstOrFail()
+
+  if (!auth || !auth.user || auth.user.role === 'user') {
+    query.where('status', 'published')
+  }
+
+  return query.firstOrFail()
 }
