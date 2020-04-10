@@ -48,7 +48,13 @@ class EpisodeController {
     }
 
     if (search) {
-      query.where('title', 'ilike', `%${search}%`)
+      query.where(function () {
+        this.where('title', 'ilike', `%${search}%`).orWhere(
+          'number',
+          'ilike',
+          `%${search}%`
+        )
+      })
     }
 
     const specialDirection = forceAsc ? 'ASC' : 'DESC'
