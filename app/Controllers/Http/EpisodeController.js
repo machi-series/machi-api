@@ -50,7 +50,7 @@ class EpisodeController {
     }
 
     if (ignoreIndex != null) {
-      query.where('ignoreIndex', Boolean(ignoreIndex))
+      query.where('ignoreIndex', ignoreIndex === 'true')
     }
 
     if (search) {
