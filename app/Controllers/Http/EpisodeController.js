@@ -262,10 +262,8 @@ ORDER BY
 
   async retreiveLink({ params }) {
     const { id } = params
-    const now = new Date(new Date().getTime() - 1000 * 5)
-    const data = await Link.query()
-      .whereRaw('created_at < ? AND id = ?', [now, id])
-      .firstOrFail()
+    // const now = new Date(new Date().getTime() - 1000 * 5)
+    const data = await Link.query().whereRaw('id = ?', [id]).firstOrFail()
     return data
   }
 }
