@@ -41,7 +41,7 @@ Route.resource('users', 'UserController')
   .middleware(
     new Map([
       [
-        ['show', 'store', 'delete'],
+        ['index', 'show', 'store', 'delete'],
         ['auth', 'admin'],
       ],
       [['update'], ['auth', 'staff']],
