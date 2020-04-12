@@ -17,11 +17,11 @@ class Series extends Model {
   }
 
   author() {
-    return this.hasOne('App/Models/User', 'authorId', 'id')
+    return this.hasOne('App/Models/PublicUser', 'authorId', 'id')
   }
 
   editedBy() {
-    return this.hasOne('App/Models/User', 'editedById', 'id')
+    return this.hasOne('App/Models/PublicUser', 'editedById', 'id')
   }
 
   cover() {
