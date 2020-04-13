@@ -144,6 +144,7 @@ ORDER BY
       'coverId',
       'source',
       'ignoreIndex',
+      'priority',
     ])
 
     const validation = {
@@ -159,6 +160,7 @@ ORDER BY
       quality: `required|string|in:${episodeQualities.join(',')}`,
       source: 'string',
       ignoreIndex: 'boolean',
+      priority: 'number',
     }
     const satinization = {
       slug: 'slug',
@@ -202,6 +204,7 @@ ORDER BY
       'coverId',
       'source',
       'ignoreIndex',
+      'priority',
     ])
 
     const validation = {
@@ -218,6 +221,7 @@ ORDER BY
       quality: `string|in:${episodeQualities.join(',')}`,
       source: 'string',
       ignoreIndex: 'boolean',
+      priority: 'number',
     }
     const satinization = {
       slug: 'slug',
