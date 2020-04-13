@@ -68,10 +68,10 @@ class EpisodeController {
       const specialOrderby = `\
 priority ${specialDirection},
 (CASE
-  WHEN type = 'episode' THEN 1
-  WHEN type = 'ova' THEN 2
-  WHEN type = 'movie' THEN 3
-  ELSE 4
+  WHEN type = 'episode' THEN 4
+  WHEN type = 'ova' THEN 3
+  WHEN type = 'movie' THEN 2
+  ELSE 1
   END) ${specialDirection},
   number::FLOAT ${specialDirection}
 `
