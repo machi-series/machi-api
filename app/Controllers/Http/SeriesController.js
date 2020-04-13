@@ -104,7 +104,10 @@ LIMIT 5
       result.rows.length === 1
 
     if (countHit) {
-      hit(result.rows[0].id, request.ip())
+      hit(
+        result.rows[0].id,
+        request.ips()[0] || request.header('x-real-ip') || request.ip()
+      )
     }
 
     return result
@@ -115,7 +118,10 @@ LIMIT 5
 
     const countHit = !auth.user || auth.user.role === 'user'
     if (countHit) {
-      hit(found.id, request.ip())
+      hit(
+        found.id,
+        request.ips()[0] || request.header('x-real-ip') || request.ip()
+      )
     }
 
     return found
