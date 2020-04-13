@@ -1,8 +1,13 @@
 'use strict'
 
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
-const Model = use('App/Models/BaseModel')
+const Model = use('Model')
 
-class Link extends Model {}
+class Link extends Model {
+  static boot() {
+    super.boot()
+    this.addTrait('UtcDate')
+  }
+}
 
 module.exports = Link
