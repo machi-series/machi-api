@@ -43,23 +43,44 @@ class SeriesController {
 
       const result = await Database.raw(
         `\
+WITH tops AS (
+  SELECT
+    s1."seriesId", count(s1.*)
+  FROM
+    (
+      SELECT "seriesId" FROM hits WHERE created_at > ?
+    ) as s1
+  GROUP BY
+    s1."seriesId"
+  ORDER BY
+    count(*) desc
+  LIMIT 5
+)
 SELECT
-  s1."seriesId", count(s1.*)
+  t."seriesId", count(e.id) AS episodes
 FROM
-  (
-    SELECT "seriesId" FROM hits WHERE created_at > ?
-  ) as s1
+  tops t
+LEFT JOIN
+  episodes e ON e."seriesId" = t."seriesId"
+WHERE
+  e.status = 'published'
 GROUP BY
-  s1."seriesId"
-ORDER BY
-  count(*) desc
-LIMIT 5
+  t."seriesId"
 `,
         [oneWeekAgo]
       )
       const ids = result.rows.map((r) => r.seriesId)
+      const counts = result.rows.map((r) => +r.episodes)
       const series = await query.whereIn('id', ids).fetch()
-      return ids.map((id) => series.rows.find((s) => s.id === id))
+      return ids.map((id, i) => {
+        const row = series.rows.find((s) => s.id === id)
+        if (!row) {
+          return row
+        }
+        // const o = row.toJSON()
+        row.episodeCount = counts[i]
+        return row
+      })
     }
 
     if (Boolean(transmissions)) {
