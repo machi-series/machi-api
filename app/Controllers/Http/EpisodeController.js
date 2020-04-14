@@ -279,8 +279,11 @@ module.exports = EpisodeController
 function getById(id, auth) {
   const query = Episode.query()
     .with('author')
+    .with('author.avatar')
     .with('editedBy')
+    .with('editedBy.avatar')
     .with('series')
+    .with('series.cover')
     .with('cover')
     .where('id', id)
 
