@@ -262,7 +262,7 @@ GROUP BY
       'type',
       'relatedSeries',
     ])
-    const { tags = [] } = request.only(['tags'])
+    const { tags } = request.only(['tags'])
 
     const validation = {
       title: 'string',
@@ -304,7 +304,9 @@ GROUP BY
 
     series.merge(data)
     await series.save()
-    await series.tags().sync(tags.map((t) => +t))
+    if (tags != null) {
+      await series.tags().sync(tags.map((t) => +t))
+    }
 
     return getById(series.id, auth)
   }
