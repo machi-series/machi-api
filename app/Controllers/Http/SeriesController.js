@@ -77,7 +77,6 @@ GROUP BY
         if (!row) {
           return row
         }
-        // const o = row.toJSON()
         row.episodeCount = counts[i]
         return row
       })

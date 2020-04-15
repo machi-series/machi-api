@@ -8,7 +8,7 @@ class PublicUser extends User {
   }
 
   static get hidden() {
-    return super.hidden.concat(['email', 'role'])
+    return super.hidden.concat(['email'])
   }
 }
 

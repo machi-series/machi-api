@@ -47,6 +47,16 @@ Route.resource('users', 'UserController')
       [['update'], ['auth', 'staff']],
     ])
   )
+Route.resource('news', 'NewsController')
+  .apiOnly()
+  .middleware(
+    new Map([
+      [
+        ['store', 'update', 'delete'],
+        ['auth', 'manager'],
+      ],
+    ])
+  )
 Route.get('/images/:name', 'ImageController.show')
 Route.post('/upload', 'ImageController.upload')
 
