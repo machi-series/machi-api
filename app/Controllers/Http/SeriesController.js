@@ -45,19 +45,19 @@ class SeriesController {
         `\
 WITH tops AS (
   SELECT
-    s1."seriesId", count(s1.*)
+  h."seriesId", count(h.id) AS n
   FROM
-    (
-      SELECT "seriesId" FROM hits WHERE created_at > ?
-    ) as s1
+    hits h
+  WHERE
+    h.created_at > ?
   GROUP BY
-    s1."seriesId"
+    h."seriesId"
   ORDER BY
-    count(*) desc
+    count(h.id) DESC
   LIMIT 5
 )
 SELECT
-  t."seriesId", count(e.id) AS episodes
+  t."seriesId", t.n, count(e.id) AS episodes
 FROM
   tops t
 LEFT JOIN
@@ -65,7 +65,9 @@ LEFT JOIN
 WHERE
   e.status = 'published'
 GROUP BY
-  t."seriesId"
+  t."seriesId", t.n
+  ORDER BY
+    t.n DESC
 `,
         [oneWeekAgo]
       )
