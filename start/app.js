@@ -24,6 +24,7 @@ const providers = [
   '@adonisjs/mail/providers/MailProvider',
   '@adonisjs/framework/providers/ViewProvider',
   path.join(__dirname, '..', 'providers', 'ValidationFormatter/Provider'),
+  '@adonisjs/websocket/providers/WsProvider',
 ]
 
 /*

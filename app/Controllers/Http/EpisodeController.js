@@ -111,7 +111,7 @@ ORDER BY
         const startSlicing = Math.max(0, centerIndex - 2)
         const endSlicing = startSlicing + 5
         const ids = allIds.slice(startSlicing, endSlicing)
-        return protectModels(
+        return Episode.protectModels(
           auth,
           await query.clone().whereIn('id', ids).fetch()
         )
@@ -120,14 +120,14 @@ ORDER BY
       query.orderBy(order, direction)
     }
 
-    return protectModels(
+    return Episode.protectModels(
       auth,
       await query.paginate(Number(page), Math.min(Number(limit), 30))
     )
   }
 
   async show({ params, auth }) {
-    return protectModels(auth, await getById(params.id, auth))
+    return Episode.protectModels(auth, await Episode.getById(params.id, auth))
   }
 
   async store({ request, response, auth }) {
@@ -185,7 +185,7 @@ ORDER BY
     }
 
     const episode = await Episode.create(data)
-    return getById(episode.id, auth)
+    return Episode.getById(episode.id, auth)
   }
 
   async update({ params, request, response, auth }) {
@@ -240,7 +240,7 @@ ORDER BY
 
     episode.merge(data)
     await episode.save()
-    return getById(episode.id, auth)
+    return Episode.getById(episode.id, auth)
   }
 
   async destroy({ params, response }) {
@@ -251,7 +251,7 @@ ORDER BY
 
   async requestLink({ response, params, auth }) {
     const { episodeId, quality, index } = params
-    const episode = (await getById(episodeId, auth)).toJSON()
+    const episode = (await Episode.getById(episodeId, auth)).toJSON()
 
     if (!episode.links[quality] || !episode.links[quality][index]) {
       return response.badRequest()
@@ -275,71 +275,3 @@ ORDER BY
 }
 
 module.exports = EpisodeController
-
-function getById(id, auth) {
-  const query = Episode.query()
-    .with('author')
-    .with('author.avatar')
-    .with('editedBy')
-    .with('editedBy.avatar')
-    .with('series')
-    .with('series.cover')
-    .with('cover')
-    .where('id', id)
-
-  if (!auth || !auth.user || auth.user.role === 'user') {
-    query.where('status', 'published')
-  }
-
-  return query.firstOrFail()
-}
-
-function protectModels(auth, modelOrModels) {
-  if ((auth && auth.user && auth.user.role !== 'user') || !modelOrModels) {
-    return modelOrModels
-  }
-
-  if (modelOrModels.toJSON) {
-    return protectModels(auth, modelOrModels.toJSON())
-  }
-
-  if (modelOrModels.perPage) {
-    return { ...modelOrModels, data: protectModels(auth, modelOrModels.data) }
-  }
-
-  if (Array.isArray(modelOrModels)) {
-    return modelOrModels.map((x) => protectModels(auth, x))
-  }
-
-  return {
-    ...modelOrModels,
-    links: protectLinks(modelOrModels.links),
-  }
-}
-
-function protectLinks(links) {
-  if (!links) {
-    return links
-  }
-
-  return Object.entries(links).reduce((acc, [quality, value]) => {
-    acc[quality] =
-      quality !== 'online'
-        ? value.map((v, index) => protectLink(v, quality, index))
-        : value
-    return acc
-  }, {})
-}
-
-function protectLink(link, quality, index) {
-  const name = link
-    .split('.')
-    .find((part) => !part.includes('www'))
-    .replace(/https?:\/\//, '')
-
-  return {
-    name,
-    quality,
-    index,
-  }
-}
