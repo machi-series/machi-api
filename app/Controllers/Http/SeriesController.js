@@ -3,7 +3,6 @@
 const ValidationFormatter = use('ValidationFormatter')
 const Series = use('App/Models/Series')
 const Hit = use('App/Models/Hit')
-const Database = use('Database')
 const { validateAll, sanitize, sanitizor } = use('Validator')
 const statuses = ['draft', 'published', 'deleted', 'revision']
 const classification = ['open', '10', '12', '14', '16', '18']
@@ -13,7 +12,6 @@ const types = ['series', 'ova', 'movie', 'special']
 function hit(seriesId, ip) {
   return Hit.create({ seriesId, ip }) //.catch(() => {})
 }
-
 class SeriesController {
   async index({ request, auth }) {
     const {
@@ -37,40 +35,7 @@ class SeriesController {
       .with('cover')
 
     if (Boolean(top)) {
-      const oneWeekAgo = new Date(
-        new Date().getTime() - 1000 * 60 * 60 * 24 * 7
-      )
-
-      const result = await Database.raw(
-        `\
-WITH tops AS (
-  SELECT
-  h."seriesId", count(h.id) AS n
-  FROM
-    hits h
-  WHERE
-    h.created_at > ?
-  GROUP BY
-    h."seriesId"
-  ORDER BY
-    count(h.id) DESC
-  LIMIT 5
-)
-SELECT
-  t."seriesId", t.n, count(e.id) AS episodes
-FROM
-  tops t
-LEFT JOIN
-  episodes e ON e."seriesId" = t."seriesId"
-WHERE
-  e.status = 'published'
-GROUP BY
-  t."seriesId", t.n
-  ORDER BY
-    t.n DESC
-`,
-        [oneWeekAgo]
-      )
+      const result = await Series.topSeries()
       const ids = result.rows.map((r) => r.seriesId)
       const counts = result.rows.map((r) => +r.episodes)
       const series = await query.whereIn('id', ids).fetch()
