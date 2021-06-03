@@ -3,6 +3,7 @@
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model')
 const Database = use('Database')
+const Ws = use('Ws')
 
 const topCache = {
   promise: null,
@@ -14,6 +15,16 @@ class Series extends Model {
   static boot() {
     super.boot()
     this.addTrait('UtcDate')
+
+    this.addHook('afterSave', (instance) => {
+      if (instance.status !== 'published') {
+        return
+      }
+      const topic = Ws.getChannel('updates:*').topic('updates:series')
+      if (topic) {
+        topic.broadcast('series', instance)
+      }
+    })
   }
 
   getRelatedSeries(value) {
