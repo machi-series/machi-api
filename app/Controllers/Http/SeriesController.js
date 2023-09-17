@@ -1,6 +1,7 @@
 'use strict'
 
 const ValidationFormatter = use('ValidationFormatter')
+const Database = use('Database')
 const Series = use('App/Models/Series')
 const Hit = use('App/Models/Hit')
 const { validateAll, sanitize, sanitizor } = use('Validator')
@@ -19,12 +20,15 @@ class SeriesController {
       order = 'id',
       direction = 'asc',
       search,
+      year,
+      releaseStatus,
+      tag,
       slug,
       transmissions = false,
       limit = 30,
       type,
-      full = false,
       top = false,
+      allYears = false,
     } = request.get()
     const query = Series.query()
       .with('author')
@@ -60,6 +64,11 @@ class SeriesController {
         .paginate(1, 500)
     }
 
+    if (Boolean(allYears)) {
+      return Database.raw('SELECT distinct year FROM series ' +
+        'WHERE type = ? order by year asc', [type])
+    }
+
     if (slug) {
       query.where('slug', slug)
     }
@@ -77,9 +86,20 @@ class SeriesController {
       query.where('title', 'ilike', `%${search}%`)
     }
 
-    const realLimit = full
-      ? Number.MAX_SAFE_INTEGER
-      : Math.min(Number(limit), 30)
+    if (year) {
+      query.where('year', year)
+    }
+
+    if (releaseStatus) {
+      query.where('releaseStatus', releaseStatus)
+    }
+
+    if (tag) {
+      query.whereRaw('id in (select "series_id" from "serie_tags" ' +
+        'where "tag_id" in (select "id" from "tags" where "slug" = ?))', [tag]);
+    }
+
+    const realLimit = Math.min(Number(limit), 30)
 
     const result = await query
       .orderBy(order, direction)
