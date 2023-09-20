@@ -6,14 +6,19 @@ const { validateAll, sanitize, sanitizor } = use('Validator')
 
 class TagController {
   index({ request }) {
-    const { page = 1, order = 'id', direction = 'asc', search } = request.get()
+    const { page = 1, limit = 20, order = 'id', direction = 'asc', search, seriesType, } = request.get()
     const query = Tag.query()
 
     if (search) {
       query.where('name', 'ilike', `%${search}%`)
     }
 
-    return query.orderBy(order, direction).paginate(Number(page))
+    if(seriesType) {
+      query.whereRaw('id in (select "tag_id" from "serie_tags" ' +
+        'where "series_id" in (select "id" from "series" where "type" = ?))', [seriesType]);
+    }
+
+    return query.orderBy(order, direction).paginate(Number(page), limit)
   }
 
   async show({ params }) {
